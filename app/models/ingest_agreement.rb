@@ -1,0 +1,2 @@
+class IngestAgreement < ApplicationRecord
+end

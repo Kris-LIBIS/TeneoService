@@ -1,0 +1,2 @@
+class StatusLog < ApplicationRecord
+end

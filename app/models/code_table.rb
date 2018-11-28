@@ -1,0 +1,2 @@
+class CodeTable < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class IngestModel < ApplicationRecord
+end
