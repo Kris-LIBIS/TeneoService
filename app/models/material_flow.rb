@@ -1,0 +1,3 @@
+class MaterialFlow < CodeTable
+
+end

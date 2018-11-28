@@ -1,0 +1,3 @@
+name: 'Vlaams Parlement'
+inst_code: 'VLP'
+ingest_dir: '/nas/vol04/ingester-deposit/prod/vlp'

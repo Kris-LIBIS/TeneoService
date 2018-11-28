@@ -1,0 +1,3 @@
+class AccessRight < CodeTable
+
+end

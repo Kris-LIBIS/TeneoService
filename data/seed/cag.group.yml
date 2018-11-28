@@ -1,0 +1,3 @@
+name: 'CAG'
+inst_code: 'KUL'
+ingest_dir: '/nas/vol04/ingester-deposit/prod/kul'

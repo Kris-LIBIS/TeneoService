@@ -12,25 +12,20 @@ class DbSetup < ActiveRecord::Migration[5.2]
       t.datetime :last_login
 
       t.timestamps
-
     end
 
     create_table :roles, id: :string, primary_key: 'code' do |t|
       t.string :name
       t.string :description
-
-      t.timestamps
-
     end
 
     create_table :groups, id: :uuid, default: 'gen_random_uuid()' do |t|
       t.string :name
       t.string :inst_code
       t.string :ingest_dir
-      t.jsonb :upload_areas, null: false
+      t.jsonb :upload_areas
 
       t.timestamps
-
     end
 
     add_index :groups, :upload_areas, using: :gin
@@ -43,7 +38,6 @@ class DbSetup < ActiveRecord::Migration[5.2]
       t.references :role, foreign_key: {primary_key: 'code'}, type: :string
 
       t.timestamps
-
     end
 
     create_table :code_tables do |t|

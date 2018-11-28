@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string "name"
     t.string "inst_code"
     t.string "ingest_dir"
-    t.jsonb "upload_areas", null: false
+    t.jsonb "upload_areas"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "group_id"
