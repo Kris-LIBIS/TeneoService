@@ -59,4 +59,8 @@ class User < ApplicationRecord
     self.memberships.reduce({}) {|h, m| h[m.group] = ((h[m.group] ||= []) << m.role)}
   end
 
+  def self.from_hash(hash)
+    super(hash, [:username, :email])
+  end
+
 end

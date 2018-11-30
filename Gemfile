@@ -53,3 +53,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'composite_primary_keys', '>= 11.0.3', '< 12.0.0'
 
 gem 'libis-tools', '~> 1.0'
+
+gem 'tty-prompt'
+gem 'tty-spinner'
+

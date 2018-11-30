@@ -1,0 +1,5 @@
+- name: 'Teneo'
+  description: 'Root application group. Any rights associated on this level will grant them on all groups'
+- name: 'Libis'
+  description: 'LIBIS organization group. For internal use by LIBIS (test ingests, etc.).'
+  parent: 'Teneo'

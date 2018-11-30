@@ -3,26 +3,48 @@ require 'libis/tools/extend/hash'
 class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
-  def ApplicationRecord.from_hash(hash)
-    self.create_from_hash(hash.cleanup, [:name])
+  def self.from_hash(hash, id_tags = [:name], &block)
+    self.create_from_hash(hash.cleanup, id_tags, &block)
   end
 
   def self.create_from_hash(hash, id_tags, &block)
-    hash = hash.key_symbols_to_strings(recursive: true)
-    id_tags = id_tags.map(&:to_s)
-    return nil unless id_tags.empty? || id_tags.any? { |k| hash.include?(k) }
+    hash = hash.key_strings_to_symbols(recursive: true)
+    id_tags = id_tags.map(&:to_sym)
+    unless id_tags.empty? || id_tags.any? { |k| hash.include?(k) }
+      error "Could not create '#{self.name}' object from Hash since none of the id tags '#{id_tags.join(',')}' are present"
+      return nil
+    end
     tags = id_tags.inject({}) do |h, k|
       v = hash.delete(k)
       h[k] = v if v
       h
     end
     item = tags.empty? ? self.new : self.find_or_initialize_by(tags)
+    item.attributes.clear
     block.call(item, hash) if block unless hash.empty?
     item.assign_attributes(hash)
-    unless self.embedded?
-      item.save!
-    end
+    item.save!
     item
   end
+
+  def to_hash
+    result = self.attributes.reject { |k, v| v.blank? || volatile_attributes.include?(k) }
+    result = result.to_yaml
+    # noinspection RubyResolve
+    result = YAML.load(result)
+    result.key_strings_to_symbols!(recursive: true)
+  end
+
+  def to_s
+    self.name || "#{self.class.name}_#{self.id}"
+  end
+
+  protected
+
+  def volatile_attributes
+    %w'id created_at updated_at'
+  end
+
+
 
 end

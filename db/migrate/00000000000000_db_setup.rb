@@ -15,22 +15,23 @@ class DbSetup < ActiveRecord::Migration[5.2]
     end
 
     create_table :roles, id: :string, primary_key: 'code' do |t|
-      t.string :name
+      t.string :name, null: false
       t.string :description
     end
 
     create_table :groups, id: :uuid, default: 'gen_random_uuid()' do |t|
-      t.string :name
+      t.string :name, null: false
+      t.string :description
       t.string :inst_code
       t.string :ingest_dir
       t.jsonb :upload_areas
+
+      t.uuid :parent, index: true
 
       t.timestamps
     end
 
     add_index :groups, :upload_areas, using: :gin
-
-    add_reference :groups, :group, foreign_key: true, type: :uuid
 
     create_table :memberships, id: true, primary_key: [:user_id, :group_id, :role_id] do |t|
       t.references :user, foreign_key: true, type: :uuid
