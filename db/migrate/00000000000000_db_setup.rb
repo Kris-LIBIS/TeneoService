@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DbSetup < ActiveRecord::Migration[5.2]
   def change
 
@@ -26,7 +28,7 @@ class DbSetup < ActiveRecord::Migration[5.2]
       t.string :ingest_dir
       t.jsonb :upload_areas
 
-      t.uuid :parent, index: true
+      t.uuid :parent_id, index: true
 
       t.timestamps
     end
@@ -53,25 +55,47 @@ class DbSetup < ActiveRecord::Migration[5.2]
       t.index [:type, :ext_id], unique: true
     end
 
+    create_table :representation_types, id: :string, primary_key: 'name' do |t|
+      t.string :preservation_type, index: true
+      t.string :usage_type
+      t.string :representation_code
+
+      t.timestamps
+    end
+
     create_table :ingest_models, id: :uuid, default: 'gen_random_uuid()' do |t|
       t.string :name
       t.string :description
       t.string :entity_type
-      t.hash
       t.string :user_a
       t.string :user_b
       t.string :user_c
       t.string :identifier
       t.string :status
 
-      t.references :access_right, foreign_key: {to_table: :code_tables}
-      t.references :retention_policy, foreign_key: {to_table: :code_tables}
+      t.jsonb :manifestations, array: true
+
+      t.references :access_right, foreign_key: {to_table: :code_tables}, null: false
+      t.references :retention_policy, foreign_key: {to_table: :code_tables}, null: false
+
+      t.references :template, foreign_key: {to_table: :ingest_models}
 
       t.timestamps
     end
 
+    add_index :ingest_models, :manifestations, using: :gin
+
     create_table :ingest_agreements, id: :uuid, default: 'gen_random_uuid()' do |t|
       t.string :name
+      t.string :project_name
+      t.string :collection_name
+      t.string :contact_ingest, array: true
+      t.string :contact_collection, array: true
+      t.string :contact_system, array: true
+      t.string :collection_description
+      t.string :ingest_job_name
+      # t.string :entity_type
+
       t.string :collector
 
       t.references :group, foreign_key: true, type: :uuid

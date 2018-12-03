@@ -1,6 +1,10 @@
+# frozen_string_literal: true
+
 class Group < ApplicationRecord
-  belongs_to :group, inverse_of: :children, optional: true
+  belongs_to :parent, class_name: 'Group', inverse_of: :children, optional: true
   has_many :children, class_name: 'Group', inverse_of: :group, dependent: :destroy
+
+  has_many :users, through: :roles
 
   serialize :upload_areas, HashSerializer
 
@@ -15,8 +19,8 @@ class Group < ApplicationRecord
     super(hash) do |item, h|
       if (parent = h.delete(:parent))
         parent_group = Group.find_by(name: parent)
-        return item.group = parent_group if parent_group
-        puts "Could not find parent group '#{parent}'"
+        item.parent = parent_group if parent_group
+        puts "Could not find parent group '#{parent}'" unless parent_group
       end
     end
   end

@@ -38,8 +38,11 @@ class SeedLoader
     load_data :role
     load_data :group
     load_data :user
-    load_data :membership
+    # load_data :membership
     load_data :access_right
+    load_data :retention_policy
+    load_data :producer
+    load_data :material_flow
   end
 
   def load_data(klass_name)
@@ -48,7 +51,7 @@ class SeedLoader
     spinner.auto_spin
     spinner.update(file: '...', name: '')
     spinner.start
-    Dir.children(base_dir).select {|f| f =~ /.#{klass_name}\.yml$/}.each do |filename|
+    Dir.children(base_dir).select {|f| f =~ /\.#{klass_name}\.yml$/}.each do |filename|
       spinner.update(file: "from '#{filename}'")
       path = File.join(base_dir, filename)
       data = YAML.load_file(path)

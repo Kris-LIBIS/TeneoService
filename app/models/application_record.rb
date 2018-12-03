@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'libis/tools/extend/hash'
 
 class ApplicationRecord < ActiveRecord::Base
@@ -20,7 +22,7 @@ class ApplicationRecord < ActiveRecord::Base
       h
     end
     item = tags.empty? ? self.new : self.find_or_initialize_by(tags)
-    item.attributes.clear
+    # item.attributes.clear
     block.call(item, hash) if block unless hash.empty?
     item.assign_attributes(hash)
     item.save!

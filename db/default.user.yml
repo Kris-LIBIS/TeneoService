@@ -1,9 +1,18 @@
 - username: 'teneo'
   email: 'teneo.libis@gmail.com'
   password: 'abc123'
+  roles:
+    - group: 'Teneo'
+      role: 'admin'
 - username: 'admin'
   email: 'admin@libis.be'
   password: 'abc123'
+  roles:
+    - group: 'Libis'
+      role: 'config'
 - username: 'libis'
   email: 'info@libis.be'
   password: 'abc123'
+  roles:
+    - group: 'Libis'
+      role: 'ingest'

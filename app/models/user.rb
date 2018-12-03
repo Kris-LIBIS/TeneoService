@@ -1,4 +1,9 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
+
+  has_many :roles, :dependent => :destroy
+  has_many :groups, through: :roles
 
   # authentication
   has_secure_password
@@ -27,11 +32,11 @@ class User < ApplicationRecord
   end
 
   def is_authorized?(role, group)
-    self.roles_for(group).include?(role.id)
+    self.roles_for(group).include?(role)
   end
 
   def add_role(role, group)
-    m = self.memberships.find_by(group: group, role: role)
+    self.memberships.build(group: group, role: role)
   end
 
   def del_role(role, group)
@@ -51,7 +56,7 @@ class User < ApplicationRecord
   end
 
   def to_token_payload
-    { user_id: id }
+    {user_id: id}
   end
 
   # @return [{Group, [Role]}]
@@ -59,8 +64,21 @@ class User < ApplicationRecord
     self.memberships.reduce({}) {|h, m| h[m.group] = ((h[m.group] ||= []) << m.role)}
   end
 
+  # @param [Hash] hash
   def self.from_hash(hash)
-    super(hash, [:username, :email])
+    super(hash, [:username, :email]) do |item, h|
+      if (roles = h.delete(:roles))
+        roles.each do |role|
+          role_code = role[:role]
+          r = Role.find_by(code: role_code)
+          puts "Could not find role '#{role_code}'" unless r
+          group_name = role[:group]
+          g = Group.find_by(name: group_name)
+          puts "Could not find group '#{group_name}'" unless g
+          item.add_role(r, g)
+        end
+      end
+    end
   end
 
 end

@@ -1,0 +1,9 @@
+- name: 'KADOC: Electronische tijdschriften'
+  description: 'Upload van JPG en PDF(OCR) per pagina - consolidatie van PDFs met watermerk.'
+  manifestations:
+    - name: 'Archive'
+      label: 'Archiefkopie'
+      representation__info: 'ARCHIVE'
+      entity_type: 'KADOC_EPeriodieken'
+      access_right: 'public'
+

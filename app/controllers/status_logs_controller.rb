@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StatusLogsController < ApplicationController
   before_action :set_status_log, only: [:show, :update, :destroy]
 

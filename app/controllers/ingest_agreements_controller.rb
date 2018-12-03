@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class IngestAgreementsController < ApplicationController
   before_action :set_ingest_agreement, only: [:show, :update, :destroy]
 

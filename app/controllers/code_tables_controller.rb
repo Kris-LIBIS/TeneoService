@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CodeTablesController < ApplicationController
   before_action :set_code_table, only: [:show, :update, :destroy]
 

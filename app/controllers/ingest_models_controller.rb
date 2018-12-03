@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class IngestModelsController < ApplicationController
   before_action :set_ingest_model, only: [:show, :update, :destroy]
 
