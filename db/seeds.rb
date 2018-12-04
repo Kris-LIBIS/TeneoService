@@ -43,15 +43,17 @@ class SeedLoader
     load_data :retention_policy
     load_data :producer
     load_data :material_flow
+    load_data :representation_type
+    load_data :ingest_model
   end
 
   def load_data(klass_name)
     klass = "#{klass_name.to_s.classify}".constantize
-    spinner = TTY::Spinner::new("[:spinner] Loading #{klass_name.to_s}(s) :file :name", interval: 4)
+    spinner = TTY::Spinner::new("[:spinner] Loading #{klass_name}(s) :file :name", interval: 4)
     spinner.auto_spin
     spinner.update(file: '...', name: '')
     spinner.start
-    Dir.children(base_dir).select {|f| f =~ /\.#{klass_name}\.yml$/}.each do |filename|
+    Dir.children(base_dir).select {|f| f =~ /\.#{klass_name}\.yml$/}.sort.each do |filename|
       spinner.update(file: "from '#{filename}'")
       path = File.join(base_dir, filename)
       data = YAML.load_file(path)

@@ -26,7 +26,7 @@ class DbSetup < ActiveRecord::Migration[5.2]
       t.string :description
       t.string :inst_code
       t.string :ingest_dir
-      t.jsonb :upload_areas
+      t.jsonb :upload_areas, null: false, default: '{}'
 
       t.uuid :parent_id, index: true
 
@@ -78,7 +78,7 @@ class DbSetup < ActiveRecord::Migration[5.2]
       t.references :access_right, foreign_key: {to_table: :code_tables}, null: false
       t.references :retention_policy, foreign_key: {to_table: :code_tables}, null: false
 
-      t.references :template, foreign_key: {to_table: :ingest_models}
+      t.references :template, foreign_key: {to_table: :ingest_models}, type: :uuid
 
       t.timestamps
     end

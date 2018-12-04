@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string "description"
     t.string "inst_code"
     t.string "ingest_dir"
-    t.jsonb "upload_areas"
+    t.jsonb "upload_areas", default: "{}", null: false
     t.uuid "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -42,6 +42,13 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table "ingest_agreements", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
+    t.string "project_name"
+    t.string "collection_name"
+    t.string "contact_ingest", array: true
+    t.string "contact_collection", array: true
+    t.string "contact_system", array: true
+    t.string "collection_description"
+    t.string "ingest_job_name"
     t.string "collector"
     t.uuid "group_id"
     t.uuid "ingest_model_id"
@@ -60,12 +67,16 @@ ActiveRecord::Schema.define(version: 0) do
     t.string "user_c"
     t.string "identifier"
     t.string "status"
-    t.bigint "access_right_id"
-    t.bigint "retention_policy_id"
+    t.jsonb "manifestations", array: true
+    t.bigint "access_right_id", null: false
+    t.bigint "retention_policy_id", null: false
+    t.uuid "template_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["access_right_id"], name: "index_ingest_models_on_access_right_id"
+    t.index ["manifestations"], name: "index_ingest_models_on_manifestations", using: :gin
     t.index ["retention_policy_id"], name: "index_ingest_models_on_retention_policy_id"
+    t.index ["template_id"], name: "index_ingest_models_on_template_id"
   end
 
   create_table "ingests", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -98,6 +109,15 @@ ActiveRecord::Schema.define(version: 0) do
     t.index ["group_id"], name: "index_memberships_on_group_id"
     t.index ["role_id"], name: "index_memberships_on_role_id"
     t.index ["user_id"], name: "index_memberships_on_user_id"
+  end
+
+  create_table "representation_types", primary_key: "name", id: :string, force: :cascade do |t|
+    t.string "preservation_type"
+    t.string "usage_type"
+    t.string "representation_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["preservation_type"], name: "index_representation_types_on_preservation_type"
   end
 
   create_table "roles", primary_key: "code", id: :string, force: :cascade do |t|
@@ -145,6 +165,7 @@ ActiveRecord::Schema.define(version: 0) do
   add_foreign_key "ingest_agreements", "ingest_models"
   add_foreign_key "ingest_models", "code_tables", column: "access_right_id"
   add_foreign_key "ingest_models", "code_tables", column: "retention_policy_id"
+  add_foreign_key "ingest_models", "ingest_models", column: "template_id"
   add_foreign_key "ingests", "ingest_agreements"
   add_foreign_key "items", "ingests"
   add_foreign_key "memberships", "groups"

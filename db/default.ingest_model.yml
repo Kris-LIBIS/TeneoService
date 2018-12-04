@@ -1,5 +1,7 @@
 - name: 'default'
   description: 'Just uploads the files as-is without any preprocessing'
+  access_right: 'public'
+  retention_policy: 'NoRetentionPolicy'
   manifestations:
     - name: 'Archive'
       label: 'Archiefkopie'
