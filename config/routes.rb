@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  # namespace :api do
-  #   namespace 'v1' do
+  namespace :api do
+    namespace 'v1' do
       post 'user_token' => 'user_token#create'
       resources :users, shallow: true do
         resources :memberships, shallow: true do
-          # resources :roles
+          resources :roles
           resources :groups, shallow: true do
             resources :ingest_agreements, shallow: true do
               resources :ingest_models
@@ -21,6 +21,6 @@ Rails.application.routes.draw do
       # get 'users/:id/groups', to: 'users#groups'
       resources :code_tables
     end
-  # end
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-# end
+end
