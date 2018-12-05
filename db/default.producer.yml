@@ -1,0 +1,6 @@
+- name: 'demo'
+  ext_id: '123456'
+  inst_code: 'INS00'
+  description: 'Producer for demonstration purposes.'
+  agent: 'producer'
+  password: 'abc123'

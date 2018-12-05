@@ -16,28 +16,25 @@ ActiveRecord::Schema.define(version: 0) do
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
-  create_table "code_tables", force: :cascade do |t|
+  create_table "access_rights", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
-    t.string "type", null: false
-    t.string "inst_code"
     t.string "ext_id", null: false
-    t.jsonb "options"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["type", "ext_id"], name: "index_code_tables_on_type_and_ext_id", unique: true
+    t.string "description"
+    t.integer "lock_version", default: 0, null: false
   end
 
-  create_table "groups", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "name", null: false
+  create_table "formats", primary_key: "name", id: :string, force: :cascade do |t|
+    t.string "category"
     t.string "description"
-    t.string "inst_code"
-    t.string "ingest_dir"
-    t.jsonb "upload_areas", default: "{}", null: false
-    t.uuid "parent_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["parent_id"], name: "index_groups_on_parent_id"
-    t.index ["upload_areas"], name: "index_groups_on_upload_areas", using: :gin
+    t.string "mime_types", array: true
+    t.string "puids", array: true
+    t.string "extensions", array: true
+    t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.index ["category"], name: "index_formats_on_category"
+    t.index ["extensions"], name: "index_formats_on_extensions", using: :gin
+    t.index ["mime_types"], name: "index_formats_on_mime_types", using: :gin
+    t.index ["puids"], name: "index_formats_on_puids", using: :gin
   end
 
   create_table "ingest_agreements", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -50,12 +47,12 @@ ActiveRecord::Schema.define(version: 0) do
     t.string "collection_description"
     t.string "ingest_job_name"
     t.string "collector"
-    t.uuid "group_id"
+    t.uuid "organization_id"
     t.uuid "ingest_model_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_ingest_agreements_on_group_id"
+    t.integer "lock_version", default: 0, null: false
     t.index ["ingest_model_id"], name: "index_ingest_agreements_on_ingest_model_id"
+    t.index ["name"], name: "index_ingest_agreements_on_name", unique: true
+    t.index ["organization_id"], name: "index_ingest_agreements_on_organization_id"
   end
 
   create_table "ingest_models", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -68,26 +65,28 @@ ActiveRecord::Schema.define(version: 0) do
     t.string "identifier"
     t.string "status"
     t.jsonb "manifestations", array: true
-    t.bigint "access_right_id", null: false
-    t.bigint "retention_policy_id", null: false
+    t.uuid "access_right_id", null: false
+    t.uuid "retention_policy_id", null: false
     t.uuid "template_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "lock_version", default: 0, null: false
     t.index ["access_right_id"], name: "index_ingest_models_on_access_right_id"
     t.index ["manifestations"], name: "index_ingest_models_on_manifestations", using: :gin
+    t.index ["name"], name: "index_ingest_models_on_name", unique: true
     t.index ["retention_policy_id"], name: "index_ingest_models_on_retention_policy_id"
     t.index ["template_id"], name: "index_ingest_models_on_template_id"
   end
 
   create_table "ingests", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
     t.string "stage"
     t.string "status"
-    t.string "name"
     t.string "base_dir"
     t.uuid "ingest_agreement_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.integer "lock_version", default: 0, null: false
     t.index ["ingest_agreement_id"], name: "index_ingests_on_ingest_agreement_id"
+    t.index ["name"], name: "index_ingests_on_name", unique: true
   end
 
   create_table "items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -95,34 +94,79 @@ ActiveRecord::Schema.define(version: 0) do
     t.string "name"
     t.string "label"
     t.uuid "ingest_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.integer "lock_version", default: 0, null: false
     t.index ["ingest_id"], name: "index_items_on_ingest_id"
   end
 
-  create_table "memberships", primary_key: ["user_id", "group_id", "role_id"], force: :cascade do |t|
+  create_table "material_flows", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.string "ext_id", null: false
+    t.string "inst_code"
+    t.string "description"
+    t.integer "lock_version", default: 0, null: false
+    t.index ["inst_code", "name"], name: "index_material_flows_on_inst_code_and_name", unique: true
+  end
+
+  create_table "memberships", primary_key: ["user_id", "organization_id", "role_id"], force: :cascade do |t|
     t.uuid "user_id", null: false
-    t.uuid "group_id", null: false
+    t.uuid "organization_id", null: false
     t.string "role_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_memberships_on_group_id"
+    t.integer "lock_version", default: 0, null: false
+    t.index ["organization_id"], name: "index_memberships_on_organization_id"
     t.index ["role_id"], name: "index_memberships_on_role_id"
     t.index ["user_id"], name: "index_memberships_on_user_id"
+  end
+
+  create_table "organizations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.string "description"
+    t.string "inst_code"
+    t.string "ingest_dir"
+    t.jsonb "upload_areas", default: "{}", null: false
+    t.uuid "producer_id"
+    t.uuid "material_flow_id"
+    t.uuid "parent_id"
+    t.integer "lock_version", default: 0, null: false
+    t.index ["material_flow_id"], name: "index_organizations_on_material_flow_id"
+    t.index ["name"], name: "index_organizations_on_name", unique: true
+    t.index ["parent_id"], name: "index_organizations_on_parent_id"
+    t.index ["producer_id"], name: "index_organizations_on_producer_id"
+    t.index ["upload_areas"], name: "index_organizations_on_upload_areas", using: :gin
+  end
+
+  create_table "producers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.string "ext_id", null: false
+    t.string "inst_code", null: false
+    t.string "description"
+    t.string "agent", null: false
+    t.string "password", null: false
+    t.integer "lock_version", default: 0, null: false
+    t.index ["inst_code", "name"], name: "index_producers_on_inst_code_and_name", unique: true
   end
 
   create_table "representation_types", primary_key: "name", id: :string, force: :cascade do |t|
     t.string "preservation_type"
     t.string "usage_type"
     t.string "representation_code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "lock_version", default: 0, null: false
     t.index ["preservation_type"], name: "index_representation_types_on_preservation_type"
+  end
+
+  create_table "retention_policies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.string "ext_id", null: false
+    t.string "description"
+    t.integer "lock_version", default: 0, null: false
   end
 
   create_table "roles", primary_key: "code", id: :string, force: :cascade do |t|
     t.string "name", null: false
     t.string "description"
+    t.integer "lock_version", default: 0, null: false
+    t.index ["name"], name: "index_roles_on_name", unique: true
   end
 
   create_table "status_logs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -131,23 +175,9 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "progess"
     t.integer "max"
     t.uuid "item_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.index ["item_id"], name: "index_status_logs_on_item_id"
-  end
-
-  create_table "type_db", force: :cascade do |t|
-    t.string "group"
-    t.string "name"
-    t.string "description"
-    t.string "mime_types", array: true
-    t.string "puids", array: true
-    t.string "extensions", array: true
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["extensions"], name: "index_type_db_on_extensions", using: :gin
-    t.index ["mime_types"], name: "index_type_db_on_mime_types", using: :gin
-    t.index ["puids"], name: "index_type_db_on_puids", using: :gin
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -157,19 +187,22 @@ ActiveRecord::Schema.define(version: 0) do
     t.string "last_name"
     t.string "password_digest"
     t.datetime "last_login"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "lock_version", default: 0, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  add_foreign_key "ingest_agreements", "groups"
   add_foreign_key "ingest_agreements", "ingest_models"
-  add_foreign_key "ingest_models", "code_tables", column: "access_right_id"
-  add_foreign_key "ingest_models", "code_tables", column: "retention_policy_id"
+  add_foreign_key "ingest_agreements", "organizations"
+  add_foreign_key "ingest_models", "access_rights"
   add_foreign_key "ingest_models", "ingest_models", column: "template_id"
+  add_foreign_key "ingest_models", "retention_policies"
   add_foreign_key "ingests", "ingest_agreements"
   add_foreign_key "items", "ingests"
-  add_foreign_key "memberships", "groups"
+  add_foreign_key "memberships", "organizations"
   add_foreign_key "memberships", "roles", primary_key: "code"
   add_foreign_key "memberships", "users"
+  add_foreign_key "organizations", "material_flows"
+  add_foreign_key "organizations", "producers"
   add_foreign_key "status_logs", "items"
 end

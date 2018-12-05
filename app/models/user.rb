@@ -3,7 +3,7 @@
 class User < ApplicationRecord
 
   has_many :roles, :dependent => :destroy
-  has_many :groups, through: :roles
+  has_many :organizations, through: :roles
 
   # authentication
   has_secure_password
@@ -25,22 +25,22 @@ class User < ApplicationRecord
 
   has_many :memberships
 
-  # @param [Group] group
-  def roles_for(group)
-    group_list = group.ancestors
-    member_groups.select {|g, _| group_list.include?(g)}.map {|_, r| r}.flatten.unique
+  # @param [Organization] organization
+  def roles_for(organization)
+    organization_list = organization.ancestors
+    member_organizations.select {|g, _| organization_list.include?(g)}.map {|_, r| r}.flatten.unique
   end
 
-  def is_authorized?(role, group)
-    self.roles_for(group).include?(role)
+  def is_authorized?(role, organization)
+    self.roles_for(organization).include?(role)
   end
 
-  def add_role(role, group)
-    self.memberships.build(group: group, role: role)
+  def add_role(role, organization)
+    self.memberships.build(organization: organization, role: role)
   end
 
-  def del_role(role, group)
-    m = self.memberships.find_by(group: group, role: role)
+  def del_role(role, organization)
+    m = self.memberships.find_by(organization: organization, role: role)
     m&.destroy!
   end
 
@@ -59,9 +59,9 @@ class User < ApplicationRecord
     {user_id: id}
   end
 
-  # @return [{Group, [Role]}]
-  def member_groups
-    self.memberships.reduce({}) {|h, m| h[m.group] = ((h[m.group] ||= []) << m.role)}
+  # @return [{Organization, [Role]}]
+  def member_organizations
+    self.memberships.reduce({}) {|h, m| h[m.organization] = ((h[m.organization] ||= []) << m.role)}
   end
 
   # @param [Hash] hash
@@ -72,9 +72,9 @@ class User < ApplicationRecord
           role_code = role[:role]
           r = Role.find_by(code: role_code)
           puts "Could not find role '#{role_code}'" unless r
-          group_name = role[:group]
-          g = Group.find_by(name: group_name)
-          puts "Could not find group '#{group_name}'" unless g
+          organization_name = role[:organization]
+          g = Organization.find_by(name: organization_name)
+          puts "Could not find organization '#{organization_name}'" unless g
           item.add_role(r, g)
         end
       end

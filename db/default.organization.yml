@@ -1,5 +1,5 @@
 - name: 'Teneo'
-  description: 'Root application group. Any rights associated on this level will grant them on all groups'
+  description: 'Root application organization. Any rights associated on this level will grant them on all organizations'
   inst_code: 'CRS00'
   ingest_dir: '/tmp/ingest/CRS00'
   upload_areas:
@@ -13,7 +13,7 @@
       path: '/nas/teneo/ready_to_ingest'
     nas: '/mounted/nas/teneo/ready_to_ingest'
 - name: 'Libis'
-  description: 'LIBIS organization group. For internal use by LIBIS (test ingests, etc.).'
+  description: 'LIBIS organization organization. For internal use by LIBIS (test ingests, etc.).'
   inst_code: 'INS00'
   ingest_dir: '/tmp/ingest/INS00'
   parent: 'Teneo'

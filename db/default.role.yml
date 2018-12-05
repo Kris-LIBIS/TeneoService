@@ -1,6 +1,6 @@
 - code: 'admin'
   name: 'Administration'
-  description: 'Administer the groups, users and code tables'
+  description: 'Administer the organizations, users and code tables'
 - code: 'config'
   name: 'Configuration'
   description: 'Configure the ingests'

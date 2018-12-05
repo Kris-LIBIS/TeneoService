@@ -23,10 +23,10 @@ require 'rails_helper'
 # removed from Rails core in Rails 5, but can be added back in via the
 # `rails-controller-testing` gem.
 
-RSpec.describe GroupsController, type: :controller do
+RSpec.describe OrganizationsController, type: :controller do
 
   # This should return the minimal set of attributes required to create a valid
-  # Group. As you add validations to Group, be sure to
+  # Organization. As you add validations to Organization, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
@@ -38,12 +38,12 @@ RSpec.describe GroupsController, type: :controller do
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
-  # GroupsController. Be sure to keep this updated too.
+  # OrganizationsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
   describe "GET #index" do
     it "returns a success response" do
-      group = Group.create! valid_attributes
+      organization = Organization.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(response).to be_successful
     end
@@ -51,33 +51,33 @@ RSpec.describe GroupsController, type: :controller do
 
   describe "GET #show" do
     it "returns a success response" do
-      group = Group.create! valid_attributes
-      get :show, params: {id: group.to_param}, session: valid_session
+      organization = Organization.create! valid_attributes
+      get :show, params: {id: organization.to_param}, session: valid_session
       expect(response).to be_successful
     end
   end
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new Group" do
+      it "creates a new Organization" do
         expect {
-          post :create, params: {group: valid_attributes}, session: valid_session
-        }.to change(Group, :count).by(1)
+          post :create, params: {organization: valid_attributes}, session: valid_session
+        }.to change(Organization, :count).by(1)
       end
 
-      it "renders a JSON response with the new group" do
+      it "renders a JSON response with the new organization" do
 
-        post :create, params: {group: valid_attributes}, session: valid_session
+        post :create, params: {organization: valid_attributes}, session: valid_session
         expect(response).to have_http_status(:created)
         expect(response.content_type).to eq('application/json')
-        expect(response.location).to eq(group_url(Group.last))
+        expect(response.location).to eq(organization_url(Organization.last))
       end
     end
 
     context "with invalid params" do
-      it "renders a JSON response with errors for the new group" do
+      it "renders a JSON response with errors for the new organization" do
 
-        post :create, params: {group: invalid_attributes}, session: valid_session
+        post :create, params: {organization: invalid_attributes}, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
@@ -90,27 +90,27 @@ RSpec.describe GroupsController, type: :controller do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested group" do
-        group = Group.create! valid_attributes
-        put :update, params: {id: group.to_param, group: new_attributes}, session: valid_session
-        group.reload
+      it "updates the requested organization" do
+        organization = Organization.create! valid_attributes
+        put :update, params: {id: organization.to_param, organization: new_attributes}, session: valid_session
+        organization.reload
         skip("Add assertions for updated state")
       end
 
-      it "renders a JSON response with the group" do
-        group = Group.create! valid_attributes
+      it "renders a JSON response with the organization" do
+        organization = Organization.create! valid_attributes
 
-        put :update, params: {id: group.to_param, group: valid_attributes}, session: valid_session
+        put :update, params: {id: organization.to_param, organization: valid_attributes}, session: valid_session
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to eq('application/json')
       end
     end
 
     context "with invalid params" do
-      it "renders a JSON response with errors for the group" do
-        group = Group.create! valid_attributes
+      it "renders a JSON response with errors for the organization" do
+        organization = Organization.create! valid_attributes
 
-        put :update, params: {id: group.to_param, group: invalid_attributes}, session: valid_session
+        put :update, params: {id: organization.to_param, organization: invalid_attributes}, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
@@ -118,11 +118,11 @@ RSpec.describe GroupsController, type: :controller do
   end
 
   describe "DELETE #destroy" do
-    it "destroys the requested group" do
-      group = Group.create! valid_attributes
+    it "destroys the requested organization" do
+      organization = Organization.create! valid_attributes
       expect {
-        delete :destroy, params: {id: group.to_param}, session: valid_session
-      }.to change(Group, :count).by(-1)
+        delete :destroy, params: {id: organization.to_param}, session: valid_session
+      }.to change(Organization, :count).by(-1)
     end
   end
 

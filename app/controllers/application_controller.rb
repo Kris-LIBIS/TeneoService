@@ -5,7 +5,7 @@ class ApplicationController < ActionController::API
 
   before_action :authenticate_user
 
-  def check_authorization(role, group)
-    current_user.is_authorized?(role, group)
+  def check_authorization(role, organization)
+    current_user.is_authorized?(role, organization)
   end
 end

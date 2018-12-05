@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :groups, :update, :destroy]
+  before_action :set_user, only: [:show, :organizations, :update, :destroy]
 
   # GET /users
   def index
@@ -15,9 +15,9 @@ class UsersController < ApplicationController
     render json: @user
   end
 
-  # GET /users/1/groups
-  def groups
-    render json: @user.groups
+  # GET /users/1/organizations
+  def organizations
+    render json: @user.organizations
   end
 
   # POST /users

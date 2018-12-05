@@ -11,14 +11,14 @@
 # user_teneo = User.create username: 'teneo', email: 'teneo.libis@gmail.com', password: 'abc123'
 # user_admin = User.create username: 'admin', email: 'admin@libis.be', password: 'abc123'
 # user_libis = User.create username: 'libis', email: 'info@libis.be', password: 'abc123'
-# group_teneo = Group.create name: 'Teneo'
-# group_libis = Group.create name: 'Libis'
-# role_admin = Role.create code: 'admin', name: 'Administration', description: 'Administer the groups, users and code tables'
+# organization_teneo = Organization.create name: 'Teneo'
+# organization_libis = Organization.create name: 'Libis'
+# role_admin = Role.create code: 'admin', name: 'Administration', description: 'Administer the organizations, users and code tables'
 # role_ingest = Role.create code: 'ingest', name: 'Ingests', description: 'Work on ingests'
 # role_config = Role.create code: 'config', name: 'Configuration', description: 'Configure the ingests'
-# Membership.create user: user_teneo, group: group_teneo, role: role_admin
-# Membership.create user: user_admin, group: group_libis, role: role_config
-# Membership.create user: user_libis, group: group_libis, role: role_ingest
+# Membership.create user: user_teneo, organization: organization_teneo, role: role_admin
+# Membership.create user: user_admin, organization: organization_libis, role: role_config
+# Membership.create user: user_libis, organization: organization_libis, role: role_ingest
 
 require 'tty-prompt'
 require 'tty-spinner'
@@ -36,7 +36,7 @@ class SeedLoader
 
   def load
     load_data :role
-    load_data :group
+    load_data :organization
     load_data :user
     # load_data :membership
     load_data :access_right
@@ -45,6 +45,7 @@ class SeedLoader
     load_data :material_flow
     load_data :representation_type
     load_data :ingest_model
+    load_data :format
   end
 
   def load_data(klass_name)

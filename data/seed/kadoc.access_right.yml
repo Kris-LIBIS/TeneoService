@@ -1,6 +1,4 @@
 - name: 'KADOC admin'
   ext_id: '1020'
-  inst_code: 'KADOC'
 - name: 'KADOC guest'
   ext_id: '1021'
-  inst_code: 'KADOC'

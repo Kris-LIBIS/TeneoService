@@ -1,4 +1,4 @@
-- group: 'IMAGE'
+- category: 'IMAGE'
   name: 'TIFF'
   description: 'Tagged Image File Format (TIFF)'
   mime_types:
@@ -28,8 +28,7 @@
     - 'tifx'
     - 'dng'
     - 'nef'
-
-- group: 'IMAGE'
+- category: 'IMAGE'
   name: 'JP2'
   description: 'Joint Photographic Experts Group 2000 (JPEG 2000)'
   mime_types:
@@ -42,10 +41,9 @@
     - 'fmt/463'
     - 'fmt/151'
     - 'x-fmt/392'
-   extensions:
+  extensions:
     - 'jp2'
-
-- group: 'IMAGE'
+- category: 'IMAGE'
   name: 'JPG'
   description: 'Joint Photographic Experts Group (JPEG)'
   mime_types:
@@ -70,8 +68,7 @@
     - 'jpg'
     - 'jpe'
     - 'jpeg'
-
-- group: 'IMAGE'
+- category: 'IMAGE'
   name: 'PNG'
   description: 'Portable Network Graphics (PNG)'
   mime_types:
@@ -84,8 +81,7 @@
     - 'fmt/13'
   extensions:
     - 'png'
-
-- group: 'IMAGE'
+- category: 'IMAGE'
   name: 'APNG'
   description: 'Animate Portable Network Graphics'
   mime_types:
@@ -95,8 +91,7 @@
   extensions:
     - 'apng'
     - 'png'
-
-- group: 'IMAGE'
+- category: 'IMAGE'
   name: 'BMP'
   description: 'Device Independent Bitmap (DIP/BMP)'
   mime_types:
@@ -121,8 +116,7 @@
     - 'x-fmt/270'
   extensions:
     - 'bmp'
-
-- group: 'IMAGE'
+- category: 'IMAGE'
   name: 'GIF'
   description: 'Graphics Interchange Format (GIF)'
   mime_types:
@@ -132,8 +126,7 @@
     - 'fmt/4'
   extensions:
     - 'gif'
-
-- group: 'IMAGE'
+- category: 'IMAGE'
   name: 'PBM'
   description: 'Portable Bitmap Format (PBM)'
   mime_types:
@@ -145,8 +138,7 @@
     - 'x-fmt/164'
   extensions:
     - 'pbm'
-
-- group: 'IMAGE'
+- category: 'IMAGE'
   name: 'PGM'
   description: 'Portable GrayMap Format (PGM)'
   mime_types:
@@ -158,8 +150,7 @@
     - 'fmt/407'
   extensions:
     - 'pgm'
-
-- group: 'IMAGE'
+- category: 'IMAGE'
   name: 'PPM'
   description: 'Portable Pixel Map (PPM)'
   mime_types:
@@ -173,8 +164,7 @@
     - 'x-fmt/178'
   extensions:
     - 'ppm'
-
-- group: 'IMAGE'
+- category: 'IMAGE'
   name: 'OO_DRAW'
   description: 'OpenDocument Graphics (ODG)'
   mime_types:
@@ -187,8 +177,7 @@
   extensions:
     - 'odg'
     - 'otg'
-
-- group: 'AUDIO'
+- category: 'AUDIO'
   name: 'MP3'
   description: 'MPEG-1 or MPEG-2 Audio Layer III (MP3)'
   mime_types:
@@ -197,8 +186,7 @@
     - 'fmt/134'
   extensions:
     - 'mp3'
-
-- group: 'AUDIO'
+- category: 'AUDIO'
   name: 'FLAC'
   description: 'Free Lossless Audio Codec (FLAC)'
   mime_types:
@@ -207,8 +195,7 @@
     - 'fmt/279'
   extensions:
     - 'flac'
-
-- group: 'AUDIO'
+- category: 'AUDIO'
   name: 'AC3'
   description: 'Dolby Digital AC-3'
   mime_types:
@@ -217,16 +204,14 @@
     - 'fmt/735'
   extensions:
     - 'ac3'
-
-- group: 'AUDIO'
+- category: 'AUDIO'
   name: 'AAC'
   description: 'Advanced Audio Coding (AAC)'
   mime_types:
     - 'audio/aac'
   extensions:
     - 'aac'
-
-- group: 'AUDIO'
+- category: 'AUDIO'
   name: 'WMA'
   description: 'Windows Media Audio (WMA)'
   mime_types:
@@ -235,16 +220,14 @@
     - 'fmt/132'
   extensions:
     - 'wma'
-
-- group: 'AUDIO'
+- category: 'AUDIO'
   name: 'ALAC'
   description: 'Apple Lossless Audio Codec (ALAC)'
   mime_types:
     - 'audio/alac'
   extensions:
     - 'alac'
-
-- group: 'AUDIO'
+- category: 'AUDIO'
   name: 'WAV'
   description: 'Waveform Audio File Format (WAVE)'
   mime_types:
@@ -253,8 +236,7 @@
     - 'fmt/6, fmt/141, fmt/142, fmt/143, fmt/1, fmt/703, fmt/706, fmt/709, fmt/2, fmt/704, fmt/707, fmt/710, fmt/527, fmt/705, fmt/708, fmt/711, x-fmt/397, x-fmt/389, x-fmt/396, fmt/712, fmt/713'
   extensions:
     - 'wav'
-
-- group: 'AUDIO'
+- category: 'AUDIO'
   name: 'AIFF'
   description: 'Audio Interchange File Format (AIFF)'
   mime_types:
@@ -263,8 +245,7 @@
     - 'fmt/414, x-fmt/135, x-fmt/136'
   extensions:
     - 'aif aiff aifc'
-
-- group: 'AUDIO'
+- category: 'AUDIO'
   name: 'AMR'
   description: 'Adaptive Multi-Rate Audio (AMR)'
   mime_types:
@@ -273,8 +254,7 @@
     - 'fmt/954'
   extensions:
     - 'amr'
-
-- group: 'AUDIO'
+- category: 'AUDIO'
   name: 'AU'
   description: 'NeXT/Sun sound (AU)'
   mime_types:
@@ -283,8 +263,7 @@
     - 'x-fmt/139'
   extensions:
     - 'au'
-
-- group: 'AUDIO'
+- category: 'AUDIO'
   name: 'M4A'
   description: 'MPEG-4 Media File (M4A)'
   mime_types:
@@ -293,8 +272,7 @@
     - 'fmt/596'
   extensions:
     - 'm4a f4a'
-
-- group: 'VIDEO'
+- category: 'VIDEO'
   name: 'MPG'
   description: 'Moving Picture Experts Group (MPEG-1/MPEG-2)'
   mime_types:
@@ -303,8 +281,7 @@
     - 'x-fmt/385 x-fmt/386 fmt/425 fmt/649 fmt/640'
   extensions:
     - 'mpg mpeg mp1 mp2 mp3 m1v m1a m2a mpa mpv'
-
-- group: 'VIDEO'
+- category: 'VIDEO'
   name: 'MP4'
   description: 'Moving Picture Experts Group (MPEG-4)'
   mime_types:
@@ -313,8 +290,7 @@
     - 'fmt/199'
   extensions:
     - 'mp4,m4v,mpeg4'
-
-- group: 'VIDEO'
+- category: 'VIDEO'
   name: 'WEBM'
   description: 'Webm'
   mime_types:
@@ -323,8 +299,7 @@
     - 'video/webm'
   extensions:
     - 'webm'
-
-- group: 'VIDEO'
+- category: 'VIDEO'
   name: 'MKV'
   description: 'Matroska Multimedia Container (MKV)'
   mime_types:
@@ -333,8 +308,7 @@
     - 'fmt/569'
   extensions:
     - 'mkv, mk3d, mka, mks'
-
-- group: 'VIDEO'
+- category: 'VIDEO'
   name: 'MJP2'
   description: 'Motion JPEG 2000 (MJP2)'
   mime_types:
@@ -343,8 +317,7 @@
     - 'fmt/337'
   extensions:
     - 'mj2, mjp2'
-
-- group: 'VIDEO'
+- category: 'VIDEO'
   name: 'QTFF'
   description: 'QuickTime File Format (QTFF)'
   mime_types:
@@ -353,8 +326,7 @@
     - 'x-fmt/384'
   extensions:
     - 'mov, qt'
-
-- group: 'VIDEO'
+- category: 'VIDEO'
   name: 'AVI'
   description: 'Audio Video Interleave (AVI)'
   mime_types:
@@ -363,8 +335,7 @@
     - 'fmt/5'
   extensions:
     - 'avi'
-
-- group: 'VIDEO'
+- category: 'VIDEO'
   name: 'OGGV'
   description: 'OGG Video (OGGV)'
   mime_types:
@@ -373,8 +344,7 @@
     - 'fmt/945'
   extensions:
     - 'ogv'
-
-- group: 'VIDEO'
+- category: 'VIDEO'
   name: 'WMV'
   description: 'Windows Media Video (WMV)'
   mime_types:
@@ -383,8 +353,7 @@
     - 'fmt/133 fmt/441'
   extensions:
     - 'wmv'
-
-- group: 'VIDEO'
+- category: 'VIDEO'
   name: 'DV'
   description: 'Digital Video (DV)'
   mime_types:
@@ -393,8 +362,7 @@
     - 'x-fmt/152'
   extensions:
     - 'dv'
-
-- group: 'VIDEO'
+- category: 'VIDEO'
   name: 'FLV'
   description: 'Flash video (FLV)'
   mime_types:
@@ -403,8 +371,7 @@
     - 'x-fmt/382'
   extensions:
     - 'flv'
-
-- group: 'VIDEO'
+- category: 'VIDEO'
   name: 'SWF'
   description: 'Macromedia Flash'
   mime_types:
@@ -413,16 +380,14 @@
     - 'fmt/104 fmt/105 fmt/106 fmt/107 fmt/108 fmt/109 fmt/110'
   extensions:
     - 'swf'
-
-- group: 'TEXT'
+- category: 'TEXT'
   name: 'TXT'
   description: 'Unformatted text'
   mime_types:
     - 'text/plain'
   extensions:
     - 'txt'
-
-- group: 'TEXT'
+- category: 'TEXT'
   name: 'RTF'
   description: 'Rich Text Format (RTF)'
   mime_types:
@@ -431,16 +396,14 @@
     - 'application/rtf text/rtf'
   extensions:
     - 'rtf'
-
-- group: 'TEXT'
+- category: 'TEXT'
   name: 'HTML'
   description: 'HyperText Markup Language (HTML)'
   mime_types:
     - 'text/html'
   extensions:
     - 'html, htm'
-
-- group: 'TEXT'
+- category: 'TEXT'
   name: 'MSDOC'
   description: 'Microsoft Word Document (DOC)'
   mime_types:
@@ -449,8 +412,7 @@
     - 'application/msword application/doc appl/text application/vnd.msword application/vnd.ms-word application/winword application/word application/x-msw6 application/x-msword'
   extensions:
     - 'doc wbk'
-
-- group: 'TEXT'
+- category: 'TEXT'
   name: 'MSDOCP'
   description: 'Microsoft Word Document (Password Protected) (DOC)'
   mime_types:
@@ -459,8 +421,7 @@
     - 'application/msword'
   extensions:
     - 'doc wbk'
-
-- group: 'TEXT'
+- category: 'TEXT'
   name: 'MSDOT'
   description: 'Microsoft Word Document Template (DOT)'
   mime_types:
@@ -469,8 +430,7 @@
     - 'application/msword'
   extensions:
     - 'dot'
-
-- group: 'TEXT'
+- category: 'TEXT'
   name: 'MSDOTP'
   description: 'Microsoft Word Document Template (Password Protected) (DOT)'
   mime_types:
@@ -479,8 +439,7 @@
     - 'application/msword'
   extensions:
     - 'dot'
-
-- group: 'TEXT'
+- category: 'TEXT'
   name: 'MSDOCX'
   description: 'Microsoft Word OpenXML Document (DOCX)'
   mime_types:
@@ -489,8 +448,7 @@
     - 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
   extensions:
     - 'docx'
-
-- group: 'TEXT'
+- category: 'TEXT'
   name: 'MSDOCM'
   description: 'Microsoft Word OpenXML Document (DOCM)'
   mime_types:
@@ -499,8 +457,7 @@
     - 'application/vnd.ms-word.document.macroEnabled.12'
   extensions:
     - 'docm'
-
-- group: 'TEXT'
+- category: 'TEXT'
   name: 'MSDOTX'
   description: 'Microsoft Word OpenXML Document Template (DOTX)'
   mime_types:
@@ -509,8 +466,7 @@
     - 'application/vnd.openxmlformats-officedocument.wordprocessingml.template'
   extensions:
     - 'dotx'
-
-- group: 'TEXT'
+- category: 'TEXT'
   name: 'MSDOTM'
   description: 'Microsoft Word OpenXML Macro-Enabled Document Template (DOTM)'
   mime_types:
@@ -519,8 +475,7 @@
     - 'application/vnd.ms-word.template.macroEnabled.12'
   extensions:
     - 'dotm'
-
-- group: 'TEXT'
+- category: 'TEXT'
   name: 'PDF'
   description: 'Adobe Portable Document Format (PDF)'
   mime_types:
@@ -529,8 +484,7 @@
     - 'application/pdf'
   extensions:
     - 'pdf'
-
-- group: 'TEXT'
+- category: 'TEXT'
   name: 'PDFA'
   description: 'Adobe Portable Document Format for Archives (PDFA)'
   mime_types:
@@ -539,8 +493,7 @@
     - 'application/pdf'
   extensions:
     - 'pdf'
-
-- group: 'TEXT'
+- category: 'TEXT'
   name: 'WORDPERFECT'
   description: 'WordPerfect Document (WPD)'
   mime_types:
@@ -549,8 +502,7 @@
     - 'application/vnd.wordperfect'
   extensions:
     - 'wpd'
-
-- group: 'TEXT'
+- category: 'TEXT'
   name: 'OO_WRITER'
   description: 'OpenDocument Text (ODT)'
   mime_types:
@@ -559,8 +511,7 @@
     - 'fmt/136, fmt/290, fmt/291'
   extensions:
     - 'odt ott oth odm otm'
-
-- group: 'TEXT'
+- category: 'TEXT'
   name: 'XML'
   description: 'Extensible Markup Language (XML)'
   mime_types:
@@ -569,9 +520,7 @@
     - 'fmt/101'
   extensions:
     - 'xml'
-
-  # This is an invented mime type. Its actually an XML ...
-- group: 'TEXT'
+- category: 'TEXT'
   name: 'SHAREPOINT_MAP'
   description: 'Sharepoint mapping file'
   mime_types:
@@ -580,8 +529,7 @@
     - 'fmt/101'
   extensions:
     - 'xml'
-
-- group: 'TABULAR'
+- category: 'TABULAR'
   name: 'MSXLS'
   description: 'Microsoft Excel Spreadsheet (XLS)'
   mime_types:
@@ -590,8 +538,7 @@
     - 'fmt/55 fmt/56 fmt/57 fmt/175 fmt/176 fmt/177 fmt/61'
   extensions:
     - 'xls'
-
-- group: 'TABULAR'
+- category: 'TABULAR'
   name: 'MSXLSX'
   description: 'Microsoft Excel OpenXML Spreadheet (XSLX)'
   mime_types:
@@ -600,8 +547,7 @@
     - 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
   extensions:
     - 'xslx'
-
-- group: 'TABULAR'
+- category: 'TABULAR'
   name: 'MSXLSB'
   description: 'Microsoft Excel Non-XML Binary Workbook (XLSB)'
   mime_types:
@@ -610,8 +556,7 @@
     - 'fmt/595'
   extensions:
     - 'xlsb'
-
-- group: 'TABULAR'
+- category: 'TABULAR'
   name: 'MSXLSM'
   description: 'Microsoft Excel Macro-Enabled (XLSM)'
   mime_types:
@@ -620,8 +565,7 @@
     - 'fmt/445'
   extensions:
     - 'xlsm'
-
-- group: 'TABULAR'
+- category: 'TABULAR'
   name: 'OO_CALC'
   description: 'OpenDocument Spreadsheet (ODS)'
   mime_types:
@@ -630,16 +574,14 @@
     - 'fmt/137 fmt/294 fmt/295'
   extensions:
     - 'ods ots'
-
-- group: 'PRESENTATION'
+- category: 'PRESENTATION'
   name: 'MSPPT'
   description: 'Microsoft Powerpoint Presentation (PPT)'
   mime_types:
     - 'application/vnd.ms-powerpoint,application/mspowerpoint'
   extensions:
     - 'ppt'
-
-- group: 'PRESENTATION'
+- category: 'PRESENTATION'
   name: 'MSPPTX'
   description: 'Microsoft Powerpoint OpenXML Presentation (PPTX)'
   mime_types:
@@ -648,8 +590,7 @@
     - 'application/vnd.openxmlformats-officedocument.presentationml.presentation'
   extensions:
     - 'pptx'
-
-- group: 'PRESENTATION'
+- category: 'PRESENTATION'
   name: 'OO_IMPRESS'
   description: 'OpenDocument Presentation (ODP)'
   mime_types:
@@ -658,9 +599,7 @@
     - 'application/vnd.oasis.opendocument.presentation application/vnd.oasis.opendocument.presentation-template'
   extensions:
     - 'odp otp'
-
-  # This is an invented mime type. Its actually an XML ...
-- group: 'ARCHIVE'
+- category: 'ARCHIVE'
   name: 'EAD'
   description: 'Encoded Archival Description (EAD)'
   mime_types:
@@ -669,8 +608,7 @@
     - 'fmt/101'
   extensions:
     - 'ead,xml'
-
-- group: 'ARCHIVE'
+- category: 'ARCHIVE'
   name: 'ZIP'
   description: 'ZIP Format'
   mime_types:
@@ -679,8 +617,7 @@
     - 'x-fmt/263'
   extensions:
     - 'zip,eip'
-
-- group: 'EMAIL'
+- category: 'EMAIL'
   name: 'MSG'
   description: 'Outlook email message (MSG)'
   mime_types:
@@ -689,8 +626,7 @@
     - 'x-fmt/430'
   extensions:
     - 'msg'
-
-- group: 'EMAIL'
+- category: 'EMAIL'
   name: 'EML'
   description: 'Internet Message Format (EML)'
   mime_types:
@@ -699,8 +635,7 @@
     - 'fmt/278 fmt/950'
   extensions:
     - 'eml'
-
-- group: 'EMAIL'
+- category: 'EMAIL'
   name: 'PST'
   description: 'Microsoft Outlook Personal Folders'
   mime_types:

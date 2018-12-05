@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       resources :users, shallow: true do
         resources :memberships, shallow: true do
           resources :roles
-          resources :groups, shallow: true do
+          resources :organizations, shallow: true do
             resources :ingest_agreements, shallow: true do
               resources :ingest_models
               resources :ingests, shallow: true do
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
         end
       end
-      # get 'users/:id/groups', to: 'users#groups'
+      # get 'users/:id/organizations', to: 'users#organizations'
       resources :code_tables
     end
   end

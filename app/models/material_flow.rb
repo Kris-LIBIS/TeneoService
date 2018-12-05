@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class MaterialFlow < CodeTable
+class MaterialFlow < ApplicationRecord
 
 end

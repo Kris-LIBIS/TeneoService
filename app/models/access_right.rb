@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class AccessRight < CodeTable
+class AccessRight < ApplicationRecord
 
 end
