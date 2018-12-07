@@ -2,9 +2,6 @@
 
 class User < ApplicationRecord
 
-  has_many :roles, :dependent => :destroy
-  has_many :organizations, through: :roles
-
   # authentication
   has_secure_password
 
@@ -23,7 +20,9 @@ class User < ApplicationRecord
   validates_uniqueness_of :email
   validates_uniqueness_of :username
 
-  has_many :memberships
+  has_many :memberships, dependent: :destroy
+  has_many :roles, through: :memberships
+  has_many :organizations, through: :memberships
 
   # @param [Organization] organization
   def roles_for(organization)
