@@ -47,6 +47,15 @@ class ApplicationRecord < ActiveRecord::Base
     %w'id created_at updated_at'
   end
 
-
+  def copy_attributes(other)
+    self.set(
+        other.attributes.reject do |k, _|
+          volatile_attributes.include? k.to_s
+        end.each_with_object({}) do |(k, v), h|
+          h[k] = v.duplicable? ? v.dup : v
+        end
+    )
+    self
+  end
 
 end

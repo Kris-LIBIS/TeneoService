@@ -16,6 +16,7 @@ gem 'puma', '~> 3.11'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1', '>= 3.1.11'
 gem 'knock', '~> 2.1', '>= 2.1.1'
+gem 'devise-jwt'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

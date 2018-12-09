@@ -233,7 +233,27 @@
   mime_types:
     - 'audio/x-wav'
   puids:
-    - 'fmt/6, fmt/141, fmt/142, fmt/143, fmt/1, fmt/703, fmt/706, fmt/709, fmt/2, fmt/704, fmt/707, fmt/710, fmt/527, fmt/705, fmt/708, fmt/711, x-fmt/397, x-fmt/389, x-fmt/396, fmt/712, fmt/713'
+    - 'fmt/6'
+    - 'fmt/141'
+    - 'fmt/142'
+    - 'fmt/143'
+    - 'fmt/1'
+    - 'fmt/703'
+    - 'fmt/706'
+    - 'fmt/709'
+    - 'fmt/2'
+    - 'fmt/704'
+    - 'fmt/707'
+    - 'fmt/710'
+    - 'fmt/527'
+    - 'fmt/705'
+    - 'fmt/708'
+    - 'fmt/711'
+    - 'x-fmt/397'
+    - 'x-fmt/389'
+    - 'x-fmt/396'
+    - 'fmt/712'
+    - 'fmt/713'
   extensions:
     - 'wav'
 - category: 'AUDIO'
@@ -242,9 +262,13 @@
   mime_types:
     - 'audio/aiff'
   puids:
-    - 'fmt/414, x-fmt/135, x-fmt/136'
+    - 'fmt/414'
+    - 'x-fmt/135'
+    - 'x-fmt/136'
   extensions:
-    - 'aif aiff aifc'
+    - 'aif'
+    - 'aiff'
+    - 'aifc'
 - category: 'AUDIO'
   name: 'AMR'
   description: 'Adaptive Multi-Rate Audio (AMR)'
@@ -271,32 +295,49 @@
   puids:
     - 'fmt/596'
   extensions:
-    - 'm4a f4a'
+    - 'm4a'
+    - 'f4a'
 - category: 'VIDEO'
   name: 'MPG'
   description: 'Moving Picture Experts Group (MPEG-1/MPEG-2)'
   mime_types:
     - 'video/mpeg'
   puids:
-    - 'x-fmt/385 x-fmt/386 fmt/425 fmt/649 fmt/640'
+    - 'x-fmt/385'
+    - 'x-fmt/386'
+    - 'fmt/425'
+    - 'fmt/649'
+    - 'fmt/640'
   extensions:
-    - 'mpg mpeg mp1 mp2 mp3 m1v m1a m2a mpa mpv'
+    - 'mpg'
+    - 'mpeg'
+    - 'mp1'
+    - 'mp2'
+    - 'mp3'
+    - 'm1v'
+    - 'm1a'
+    - 'm2a'
+    - 'mpa'
+    - 'mpv'
 - category: 'VIDEO'
   name: 'MP4'
   description: 'Moving Picture Experts Group (MPEG-4)'
   mime_types:
-    - 'video/mp4, application/mp4'
+    - 'video/mp4'
+    - 'application/mp4'
   puids:
     - 'fmt/199'
   extensions:
-    - 'mp4,m4v,mpeg4'
+    - 'mp4'
+    - 'm4v'
+    - 'mpeg4'
 - category: 'VIDEO'
   name: 'WEBM'
   description: 'Webm'
   mime_types:
-    - 'fmt/573'
-  puids:
     - 'video/webm'
+  puids:
+    - 'fmt/573'
   extensions:
     - 'webm'
 - category: 'VIDEO'
@@ -307,7 +348,10 @@
   puids:
     - 'fmt/569'
   extensions:
-    - 'mkv, mk3d, mka, mks'
+    - 'mkv'
+    - 'mk3d'
+    - 'mka'
+    - 'mks'
 - category: 'VIDEO'
   name: 'MJP2'
   description: 'Motion JPEG 2000 (MJP2)'
@@ -316,7 +360,8 @@
   puids:
     - 'fmt/337'
   extensions:
-    - 'mj2, mjp2'
+    - 'mj2'
+    - 'mjp2'
 - category: 'VIDEO'
   name: 'QTFF'
   description: 'QuickTime File Format (QTFF)'
@@ -325,7 +370,8 @@
   puids:
     - 'x-fmt/384'
   extensions:
-    - 'mov, qt'
+    - 'mov'
+    - 'qt'
 - category: 'VIDEO'
   name: 'AVI'
   description: 'Audio Video Interleave (AVI)'
@@ -350,7 +396,8 @@
   mime_types:
     - 'video/x-ms-wmv'
   puids:
-    - 'fmt/133 fmt/441'
+    - 'fmt/133'
+    - 'fmt/441'
   extensions:
     - 'wmv'
 - category: 'VIDEO'
@@ -377,7 +424,13 @@
   mime_types:
     - 'application/x-shockwave-flash'
   puids:
-    - 'fmt/104 fmt/105 fmt/106 fmt/107 fmt/108 fmt/109 fmt/110'
+    - 'fmt/104'
+    - 'fmt/105'
+    - 'fmt/106'
+    - 'fmt/107'
+    - 'fmt/108'
+    - 'fmt/109'
+    - 'fmt/110'
   extensions:
     - 'swf'
 - category: 'TEXT'
@@ -391,9 +444,9 @@
   name: 'RTF'
   description: 'Rich Text Format (RTF)'
   mime_types:
-    - 'fmt/45'
-  puids:
     - 'application/rtf text/rtf'
+  puids:
+    - 'fmt/45'
   extensions:
     - 'rtf'
 - category: 'TEXT'
@@ -402,120 +455,168 @@
   mime_types:
     - 'text/html'
   extensions:
-    - 'html, htm'
+    - 'html'
+    - 'htm'
 - category: 'TEXT'
   name: 'MSDOC'
   description: 'Microsoft Word Document (DOC)'
   mime_types:
-    - 'fmt/609 fmt/39 x-fmt/273 x-fmt/274 x-fmt/275 x-fmt/276 fmt/37 fmt/38 fmt/40'
+    - 'application/msword'
+    - 'application/doc appl/text'
+    - 'application/vnd.msword'
+    - 'application/vnd.ms-word'
+    - 'application/winword'
+    - 'application/word'
+    - 'application/x-msw6'
+    - 'application/x-msword'
   puids:
-    - 'application/msword application/doc appl/text application/vnd.msword application/vnd.ms-word application/winword application/word application/x-msw6 application/x-msword'
+    - 'fmt/609'
+    - 'fmt/39'
+    - 'x-fmt/273'
+    - 'x-fmt/274'
+    - 'x-fmt/275'
+    - 'x-fmt/276'
+    - 'fmt/37'
+    - 'fmt/38'
+    - 'fmt/40'
   extensions:
-    - 'doc wbk'
+    - 'doc'
+    - 'wbk'
 - category: 'TEXT'
   name: 'MSDOCP'
   description: 'Microsoft Word Document (Password Protected) (DOC)'
   mime_types:
-    - 'fmt/754'
-  puids:
     - 'application/msword'
+  puids:
+    - 'fmt/754'
   extensions:
-    - 'doc wbk'
+    - 'doc'
+    - 'wbk'
 - category: 'TEXT'
   name: 'MSDOT'
   description: 'Microsoft Word Document Template (DOT)'
   mime_types:
-    - 'x-fmt/45'
-  puids:
     - 'application/msword'
+  puids:
+    - 'x-fmt/45'
   extensions:
     - 'dot'
 - category: 'TEXT'
   name: 'MSDOTP'
   description: 'Microsoft Word Document Template (Password Protected) (DOT)'
   mime_types:
-    - 'fmt/755'
-  puids:
     - 'application/msword'
+  puids:
+    - 'fmt/755'
   extensions:
     - 'dot'
 - category: 'TEXT'
   name: 'MSDOCX'
   description: 'Microsoft Word OpenXML Document (DOCX)'
   mime_types:
-    - 'fmt/412 fido-fmt/189.word lias-fmt/189.word'
-  puids:
     - 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+  puids:
+    - 'fmt/412'
+    - 'fido-fmt/189.word'
+    - 'lias-fmt/189.word'
   extensions:
     - 'docx'
 - category: 'TEXT'
   name: 'MSDOCM'
   description: 'Microsoft Word OpenXML Document (DOCM)'
   mime_types:
-    - 'fmt/523'
-  puids:
     - 'application/vnd.ms-word.document.macroEnabled.12'
+  puids:
+    - 'fmt/523'
   extensions:
     - 'docm'
 - category: 'TEXT'
   name: 'MSDOTX'
   description: 'Microsoft Word OpenXML Document Template (DOTX)'
   mime_types:
-    - 'fmt/597'
-  puids:
     - 'application/vnd.openxmlformats-officedocument.wordprocessingml.template'
+  puids:
+    - 'fmt/597'
   extensions:
     - 'dotx'
 - category: 'TEXT'
   name: 'MSDOTM'
   description: 'Microsoft Word OpenXML Macro-Enabled Document Template (DOTM)'
   mime_types:
-    - 'fmt/599'
-  puids:
     - 'application/vnd.ms-word.template.macroEnabled.12'
+  puids:
+    - 'fmt/599'
   extensions:
     - 'dotm'
 - category: 'TEXT'
   name: 'PDF'
   description: 'Adobe Portable Document Format (PDF)'
   mime_types:
-    - 'fmt/14 fmt/15 fmt/16 fmt/17 fmt/18 fmt/19 fmt/20 fmt/276'
-  puids:
     - 'application/pdf'
+  puids:
+    - 'fmt/14'
+    - 'fmt/15'
+    - 'fmt/16'
+    - 'fmt/17'
+    - 'fmt/18'
+    - 'fmt/19'
+    - 'fmt/20'
+    - 'fmt/276'
   extensions:
     - 'pdf'
 - category: 'TEXT'
   name: 'PDFA'
   description: 'Adobe Portable Document Format for Archives (PDFA)'
   mime_types:
-    - 'fmt/95 fmt/354 fmt/476 fmt/477 fmt/478 fmt/479 fmt/480 fmt/481'
-  puids:
     - 'application/pdf'
+  puids:
+    - 'fmt/95'
+    - 'fmt/354'
+    - 'fmt/476'
+    - 'fmt/477'
+    - 'fmt/478'
+    - 'fmt/479'
+    - 'fmt/480'
+    - 'fmt/481'
   extensions:
     - 'pdf'
 - category: 'TEXT'
   name: 'WORDPERFECT'
   description: 'WordPerfect Document (WPD)'
   mime_types:
-    - 'x-fmt/44 x-fmt/394'
-  puids:
     - 'application/vnd.wordperfect'
+  puids:
+    - 'x-fmt/44'
+    - 'x-fmt/394'
   extensions:
     - 'wpd'
 - category: 'TEXT'
   name: 'OO_WRITER'
   description: 'OpenDocument Text (ODT)'
   mime_types:
-    - 'application/vnd.oasis.opendocument.text, application/x-vnd.oasis.opendocument.text, application/vnd.oasis.opendocument.text-template, application/vnd.oasis.opendocument.text-web, application/vnd.oasis.opendocument.text-master, application/vnd.oasis.opendocument.text-master-template'
+    - 'application/vnd.oasis.opendocument.text'
+    - 'application/x-vnd.oasis.opendocument.text'
+    - 'application/vnd.oasis.opendocument.text-template'
+    - 'application/vnd.oasis.opendocument.text-web'
+    - 'application/vnd.oasis.opendocument.text-master'
+    - 'application/vnd.oasis.opendocument.text-master-template'
   puids:
-    - 'fmt/136, fmt/290, fmt/291'
+    - 'fmt/136'
+    - 'fmt/290'
+    - 'fmt/291'
   extensions:
-    - 'odt ott oth odm otm'
+    - 'odt'
+    - 'ott'
+    - 'oth'
+    - 'odm'
+    - 'otm'
 - category: 'TEXT'
   name: 'XML'
   description: 'Extensible Markup Language (XML)'
   mime_types:
-    - 'text/xml application/xml application/x-xml'
+    - 'text/xml'
+    - 'application/xml'
+    - 'application/x-xml'
   puids:
     - 'fmt/101'
   extensions:
@@ -524,7 +625,7 @@
   name: 'SHAREPOINT_MAP'
   description: 'Sharepoint mapping file'
   mime_types:
-    - 'text/xml/sharepoint_map'
+    - 'text/x.xml.sharepoint_map'
   puids:
     - 'fmt/101'
   extensions:
@@ -533,18 +634,26 @@
   name: 'MSXLS'
   description: 'Microsoft Excel Spreadsheet (XLS)'
   mime_types:
-    - 'application/vnd.ms-excel,application/msexcel'
+    - 'application/vnd.ms-excel'
+    - 'application/msexcel'
   puids:
-    - 'fmt/55 fmt/56 fmt/57 fmt/175 fmt/176 fmt/177 fmt/61'
+    - 'fmt/55'
+    - 'fmt/56'
+    - 'fmt/57'
+    - 'fmt/175'
+    - 'fmt/176'
+    - 'fmt/177'
+    - 'fmt/61'
   extensions:
     - 'xls'
 - category: 'TABULAR'
   name: 'MSXLSX'
   description: 'Microsoft Excel OpenXML Spreadheet (XSLX)'
   mime_types:
-    - 'fmt/214 fido-fmt/189.xl'
-  puids:
     - 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+  puids:
+    - 'fmt/214'
+    - 'fido-fmt/189.xl'
   extensions:
     - 'xslx'
 - category: 'TABULAR'
@@ -569,45 +678,55 @@
   name: 'OO_CALC'
   description: 'OpenDocument Spreadsheet (ODS)'
   mime_types:
-    - 'application/vnd.oasis.opendocument.spreadsheet application/vnd.oasis.opendocument.spreadsheet-template'
+    - 'application/vnd.oasis.opendocument.spreadsheet'
+    - 'application/vnd.oasis.opendocument.spreadsheet-template'
   puids:
-    - 'fmt/137 fmt/294 fmt/295'
+    - 'fmt/137'
+    - 'fmt/294'
+    - 'fmt/295'
   extensions:
-    - 'ods ots'
+    - 'ods'
+    - 'ots'
 - category: 'PRESENTATION'
   name: 'MSPPT'
   description: 'Microsoft Powerpoint Presentation (PPT)'
   mime_types:
-    - 'application/vnd.ms-powerpoint,application/mspowerpoint'
+    - 'application/vnd.ms-powerpoint'
+    - 'application/mspowerpoint'
   extensions:
     - 'ppt'
 - category: 'PRESENTATION'
   name: 'MSPPTX'
   description: 'Microsoft Powerpoint OpenXML Presentation (PPTX)'
   mime_types:
-    - 'fido-fmt/189.ppt'
-  puids:
     - 'application/vnd.openxmlformats-officedocument.presentationml.presentation'
+  puids:
+    - 'fido-fmt/189.ppt'
   extensions:
     - 'pptx'
 - category: 'PRESENTATION'
   name: 'OO_IMPRESS'
   description: 'OpenDocument Presentation (ODP)'
   mime_types:
-    - 'fmt/138 fmt/292 fmt/293'
+    - 'application/vnd.oasis.opendocument.presentation'
+    - 'application/vnd.oasis.opendocument.presentation-template'
   puids:
-    - 'application/vnd.oasis.opendocument.presentation application/vnd.oasis.opendocument.presentation-template'
+    - 'fmt/138'
+    - 'fmt/292'
+    - 'fmt/293'
   extensions:
-    - 'odp otp'
+    - 'odp'
+    - 'otp'
 - category: 'ARCHIVE'
   name: 'EAD'
   description: 'Encoded Archival Description (EAD)'
   mime_types:
-    - 'archive/ead'
+    - 'text/x.ead'
   puids:
     - 'fmt/101'
   extensions:
-    - 'ead,xml'
+    - 'ead'
+    - 'xml'
 - category: 'ARCHIVE'
   name: 'ZIP'
   description: 'ZIP Format'
@@ -616,7 +735,8 @@
   puids:
     - 'x-fmt/263'
   extensions:
-    - 'zip,eip'
+    - 'zip'
+    - 'eip'
 - category: 'EMAIL'
   name: 'MSG'
   description: 'Outlook email message (MSG)'
@@ -632,7 +752,8 @@
   mime_types:
     - 'message/rfc822'
   puids:
-    - 'fmt/278 fmt/950'
+    - 'fmt/278'
+    - 'fmt/950'
   extensions:
     - 'eml'
 - category: 'EMAIL'
@@ -641,6 +762,7 @@
   mime_types:
     - 'application/vnd.ms-outlook'
   puids:
-    - 'x-fmt/248 x-fmt/249'
+    - 'x-fmt/248'
+    - 'x-fmt/249'
   extensions:
     - 'pst'

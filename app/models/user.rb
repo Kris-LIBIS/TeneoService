@@ -44,7 +44,6 @@ class User < ApplicationRecord
   end
 
   def self.from_token_request(request)
-    puts request.params['auth']
     return nil unless (r = request.params['auth'])
     self.find_by(username: r['username']) || self.find_by(email: r['email'])
   end

@@ -152,6 +152,7 @@ class DbSetup < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :label
 
+      t.references :parent, foreign_key: {to_table: :items, on_delete: :cascade}, type: :uuid
       t.references :ingest, foreign_key: true, type: :uuid
 
       t.timestamps default: -> {'CURRENT_TIMESTAMP'}
