@@ -3,7 +3,7 @@
 module Api
   module V1
 
-    class OrganizationsController < ApplicationController
+    class OrganizationsController < ApiController
       before_action :set_organization, only: [:show, :update, :destroy]
 
       # GET /organizations

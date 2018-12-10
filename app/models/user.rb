@@ -24,6 +24,8 @@ class User < ApplicationRecord
   has_many :roles, through: :memberships
   has_many :organizations, through: :memberships
 
+  accepts_nested_attributes_for :memberships, allow_destroy: true
+
   # @param [Organization] organization
   def roles_for(organization)
     organization_list = organization.ancestors

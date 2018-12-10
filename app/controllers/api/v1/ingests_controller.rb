@@ -3,7 +3,7 @@
 module Api
   module V1
 
-    class IngestsController < ApplicationController
+    class IngestsController < ApiController
       before_action :set_ingest, only: [:show, :update, :destroy]
 
       # GET /ingests

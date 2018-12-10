@@ -23,9 +23,9 @@ class DbSetup < ActiveRecord::Migration[5.2]
       t.column :lock_version, :integer, null: false, default: 0
     end
 
-    create_table :producers, id: :uuid, default: 'gen_random_uuid()'  do |t|
+    create_table :producers do |t|
       t.string :name, null: false
-      t.string :ext_id, null: false
+      t.string :code, null: false
       t.string :inst_code, null: false
       t.string :description
       t.string :agent, null: false
@@ -36,9 +36,9 @@ class DbSetup < ActiveRecord::Migration[5.2]
       t.column :lock_version, :integer, null: false, default: 0
     end
 
-    create_table :material_flows, id: :uuid, default: 'gen_random_uuid()'  do |t|
+    create_table :material_flows do |t|
       t.string :name, null: false
-      t.string :ext_id, null: false
+      t.string :code, null: false
       t.string :inst_code
       t.string :description
 
@@ -47,56 +47,59 @@ class DbSetup < ActiveRecord::Migration[5.2]
       t.column :lock_version, :integer, null: false, default: 0
     end
 
-    create_table :organizations, id: :uuid, default: 'gen_random_uuid()' do |t|
+    create_table :organizations do |t|
       t.string :name, null: false, index: {unique: true}
       t.string :description
       t.string :inst_code
       t.string :ingest_dir
       t.jsonb :upload_areas, null: false, default: '{}'
-      t.references :producer, foreign_key: true, type: :uuid
-      t.references :material_flow, foreign_key: true, type: :uuid
+      t.references :producer, foreign_key: true
+      t.references :material_flow, foreign_key: true
 
-      t.uuid :parent_id, index: true
+      t.references :parent, foreign_key: {to_table: :organizations}
 
       t.column :lock_version, :integer, null: false, default: 0
     end
 
     add_index :organizations, :upload_areas, using: :gin
 
-    create_table :memberships, id: true, primary_key: [:user_id, :organization_id, :role_id] do |t|
+    create_table :memberships do |t|
       t.references :user, foreign_key: true, type: :uuid
-      t.references :organization, foreign_key: true, type: :uuid
+      t.references :organization, foreign_key: true
       t.references :role, foreign_key: {primary_key: 'code'}, type: :string
 
+      t.index [:user_id, :organization_id, :role_id], unique: true
+
       t.column :lock_version, :integer, null: false, default: 0
     end
 
-    create_table :access_rights, id: :uuid, default: 'gen_random_uuid()'  do |t|
+    create_table :access_rights do |t|
       t.string :name, null: false
-      t.string :ext_id, null: false
+      t.string :code, null: false
       t.string :description
 
       t.column :lock_version, :integer, null: false, default: 0
     end
 
-    create_table :retention_policies, id: :uuid, default: 'gen_random_uuid()'  do |t|
+    create_table :retention_policies do |t|
       t.string :name, null: false
-      t.string :ext_id, null: false
+      t.string :code, null: false
       t.string :description
 
       t.column :lock_version, :integer, null: false, default: 0
     end
 
-    create_table :representation_types, id: :string, primary_key: 'name' do |t|
-      t.string :preservation_type, index: true
+    create_table :representation_types do |t|
+      t.string :name, null: false, index: {unique: true}
+      t.string :preservation_type, null: false, index: true
       t.string :usage_type
       t.string :representation_code
 
       t.column :lock_version, :integer, null: false, default: 0
     end
 
-    create_table :ingest_models, id: :uuid, default: 'gen_random_uuid()' do |t|
-      t.string :name, index: {unique: true}
+    create_table :ingest_models do |t|
+      t.string :name, null: false, index: {unique: true}
       t.string :description
       t.string :entity_type
       t.string :user_a
@@ -107,18 +110,18 @@ class DbSetup < ActiveRecord::Migration[5.2]
 
       t.jsonb :manifestations, array: true
 
-      t.references :access_right, foreign_key: true, type: :uuid, null: false
-      t.references :retention_policy, foreign_key: true, type: :uuid, null: false
+      t.references :access_right, foreign_key: true, null: false
+      t.references :retention_policy, foreign_key: true, null: false
 
-      t.references :template, foreign_key: {to_table: :ingest_models}, type: :uuid
+      t.references :template, foreign_key: {to_table: :ingest_models}
 
       t.column :lock_version, :integer, null: false, default: 0
     end
 
     add_index :ingest_models, :manifestations, using: :gin
 
-    create_table :ingest_agreements, id: :uuid, default: 'gen_random_uuid()' do |t|
-      t.string :name, index: {unique: true}
+    create_table :ingest_agreements do |t|
+      t.string :name, null: false, index: {unique: true}
       t.string :project_name
       t.string :collection_name
       t.string :contact_ingest, array: true
@@ -129,49 +132,50 @@ class DbSetup < ActiveRecord::Migration[5.2]
 
       t.string :collector
 
-      t.references :organization, foreign_key: true, type: :uuid
-      t.references :ingest_model, foreign_key: true, type: :uuid
+      t.references :organization, foreign_key: true
+      t.references :ingest_model, foreign_key: true
 
       t.column :lock_version, :integer, null: false, default: 0
     end
 
-    create_table :ingests, id: :uuid, default: 'gen_random_uuid()' do |t|
-      t.string :name, index: {unique: true}
+    create_table :ingests do |t|
+      t.string :name, null: false
       t.string :stage
       t.string :status
       t.string :base_dir
 
-      t.references :ingest_agreement, foreign_key: true, type: :uuid
+      t.references :ingest_agreement, foreign_key: true
 
       t.timestamps default: -> {'CURRENT_TIMESTAMP'}
       t.column :lock_version, :integer, null: false, default: 0
     end
 
-    create_table :items, id: :uuid, default: 'gen_random_uuid()' do |t|
-      t.string :type
-      t.string :name
+    create_table :items do |t|
+      t.string :type, null: false
+      t.string :name, null: false
       t.string :label
 
-      t.references :parent, foreign_key: {to_table: :items, on_delete: :cascade}, type: :uuid
-      t.references :ingest, foreign_key: true, type: :uuid
+      t.references :parent, foreign_key: {to_table: :items, on_delete: :cascade}
+      t.references :ingest, foreign_key: true
 
       t.timestamps default: -> {'CURRENT_TIMESTAMP'}
       t.column :lock_version, :integer, null: false, default: 0
     end
 
     # noinspection RubyResolve
-    create_table :status_logs, id: :uuid, default: 'gen_random_uuid()' do |t|
+    create_table :status_logs do |t|
       t.string :task
       t.string :status
       t.integer :progess
       t.integer :max
 
-      t.references :item, foreign_key: true, type: :uuid
+      t.references :item, foreign_key: true
 
       t.timestamps default: -> {'CURRENT_TIMESTAMP'}
     end
 
-    create_table :formats, id: :string, primary_key: 'name' do |t|
+    create_table :formats do |t|
+      t.string :name, null: false, index: {unique: true}
       t.string :category, index: true
       t.string :description
       t.string :mime_types, array: true

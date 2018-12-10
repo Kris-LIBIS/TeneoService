@@ -1,6 +1,6 @@
 - name: 'demo_mf'
-  ext_id: '111111'
+  code: '111111'
   inst_code: 'CRS00'
 - name: 'ingest_mf'
-  ext_id: '222222'
+  code: '222222'
   inst_code: 'INS00'

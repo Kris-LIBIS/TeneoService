@@ -38,7 +38,7 @@ class ApplicationRecord < ActiveRecord::Base
   end
 
   def to_s
-    self.name || "#{self.class.name}_#{self.id}"
+    (self.name rescue nil) || "#{self.class.name}_#{self.id}"
   end
 
   protected

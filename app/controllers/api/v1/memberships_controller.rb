@@ -3,7 +3,7 @@
 module Api
   module V1
 
-    class MembershipsController < ApplicationController
+    class MembershipsController < ApiController
       before_action :set_membership, only: [:show, :update, :destroy]
 
       # GET /memberships

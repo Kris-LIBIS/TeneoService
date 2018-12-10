@@ -3,7 +3,7 @@
 module Api
   module V1
 
-    class RolesController < ApplicationController
+    class RolesController < ApiController
       before_action :set_role, only: [:show, :update, :destroy]
 
       # GET /roles

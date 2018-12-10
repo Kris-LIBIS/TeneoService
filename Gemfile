@@ -58,3 +58,7 @@ gem 'libis-tools', '~> 1.0'
 gem 'tty-prompt'
 gem 'tty-spinner'
 
+gem 'activeadmin'
+gem 'activeadmin_addons'
+gem 'devise'
+gem 'pundit'
