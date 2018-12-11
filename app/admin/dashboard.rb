@@ -17,7 +17,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Users" do
           ul do
             User.all.map do |user|
-              li link_to(user.username, admin_user_path(user))
+              li link_to(user.email, admin_user_path(user))
             end
           end
         end

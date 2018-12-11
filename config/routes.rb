@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :admin_users, ActiveAdmin::Devise.config
+  devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   namespace :api do
     namespace 'v1' do
-      post 'user_token' => 'user_token#create'
+      # post 'user_token' => 'user_token#create'
       resources :users, shallow: true do
         resources :memberships, shallow: true do
           resources :roles

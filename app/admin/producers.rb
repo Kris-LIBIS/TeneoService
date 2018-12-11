@@ -1,13 +1,15 @@
 ActiveAdmin.register Producer do
+
   menu parent: 'Code tables'
 
-  filter :name
-  filter :code
-  filter :inst_code
-  filter :agent
-  filter :description
+  config.sort_order = 'id_asc'
+
+  remove_filter :lock_version, :password
+
+  permit_params :name, :code, :inst_code, :description, :agent, :password
 
   index do
+    column :id
     column :name
     column :code
     column :inst_code
@@ -16,6 +18,14 @@ ActiveAdmin.register Producer do
     actions
   end
 
-  permit_params :name, :code, :inst_code, :agent, :password, :description
+  show do
+    attributes_table do
+      row :name
+      row :code
+      row :inst_code
+      row :agent
+      row :description
+    end
+  end
 
 end

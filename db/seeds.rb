@@ -20,9 +20,6 @@
 # Membership.create user: user_admin, organization: organization_libis, role: role_config
 # Membership.create user: user_libis, organization: organization_libis, role: role_ingest
 
-
-AdminUser.create email: 'teneo.libis@gmail.com', password: 'abc123', password_confirmation: 'abc123'
-
 require 'tty-prompt'
 require 'tty-spinner'
 

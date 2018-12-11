@@ -15,8 +15,10 @@ gem 'puma', '~> 3.11'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1', '>= 3.1.11'
-gem 'knock', '~> 2.1', '>= 2.1.1'
+# gem 'knock', '~> 2.1', '>= 2.1.1'
+gem 'devise'
 gem 'devise-jwt'
+gem 'pundit'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
@@ -60,5 +62,6 @@ gem 'tty-spinner'
 
 gem 'activeadmin'
 gem 'activeadmin_addons'
-gem 'devise'
-gem 'pundit'
+# gem 'active_material'
+
+gem 'sprockets-rails'

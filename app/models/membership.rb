@@ -10,9 +10,9 @@ class Membership < ApplicationRecord
 
   def self.from_hash(hash)
     super(hash, []) do |item, h|
-      user_name = h.delete(:user)
-      _user = User.find_by(username: user_name)
-      puts "Could not find user '#{user_name}'" unless _user
+      email = h.delete(:user)
+      _user = User.find_by(email: email)
+      puts "Could not find user '#{email}'" unless _user
       item.user = _user
 
       organization_name = h.delete(:organization)

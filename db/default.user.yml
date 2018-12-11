@@ -1,17 +1,15 @@
-- username: 'teneo'
-  email: 'teneo.libis@gmail.com'
+- email: 'teneo.libis@gmail.com'
   password: 'abc123'
+  sysadmin: true
   roles:
     - organization: 'Teneo'
       role: 'admin'
-- username: 'admin'
-  email: 'admin@libis.be'
+- email: 'admin@libis.be'
   password: 'abc123'
   roles:
     - organization: 'Libis'
       role: 'config'
-- username: 'libis'
-  email: 'info@libis.be'
+- email: 'info@libis.be'
   password: 'abc123'
   roles:
     - organization: 'Libis'

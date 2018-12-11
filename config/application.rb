@@ -47,6 +47,7 @@ module TeneoService
 
     config.middleware.use Rack::MethodOverride
 
+    config.autoload_paths += %W( lib/ )
 
   end
 end

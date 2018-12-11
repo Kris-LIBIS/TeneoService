@@ -1,10 +1,10 @@
 ActiveAdmin.register MaterialFlow do
+
   menu parent: 'Code tables'
 
-  filter :name
-  filter :code
-  filter :inst_code
-  filter :description
+  config.sort_order = 'id_asc'
+
+  remove_filter :lock_version
 
   permit_params :name, :code, :inst_code, :description
 
@@ -14,6 +14,15 @@ ActiveAdmin.register MaterialFlow do
     column :inst_code
     column :description
     actions
+  end
+
+  show do
+    attributes_table do
+      row :name
+      row :code
+      row :inst_code
+      row :description
+    end
   end
 
 end

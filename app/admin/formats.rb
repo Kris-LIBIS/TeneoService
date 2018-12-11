@@ -1,15 +1,19 @@
+require 'activeadmin_addons'
+
 ActiveAdmin.register Format do
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
+
+  menu parent: 'Code tables'
+
+  config.sort_order = 'category_asc, name_asc'
+  config.paginate = false
+
+  permit_params :category, :name, :description, mime_types: [], puids: [], extensions: []
+
+  index as: :grouped_tabs, group_by_attribute: :category do
+    column :name
+    column :description
+    column :extensions
+    actions
+  end
 
 end

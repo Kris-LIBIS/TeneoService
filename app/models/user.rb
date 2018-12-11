@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # :recoverable, :rememberable
+  devise :database_authenticatable, :registerable, :validatable
 
   # authentication
-  has_secure_password
+  # has_secure_password
 
   # password validation
   validates_length_of :password, minimum: 6, allow_nil: false, allow_blank: false
-  # validates_confirmation_of             :password, allow_nil: false, allow_blank: false
+  # validates_confirmation_of :password, allow_nil: false, allow_blank: false
 
   # sanitize email and username
   before_validation do
     self.email = self.email.to_s.downcase
-    self.username = self.username.to_s.downcase
   end
 
   validates_presence_of :email
-  validates_presence_of :username
   validates_uniqueness_of :email
-  validates_uniqueness_of :username
 
   has_many :memberships, dependent: :destroy
   has_many :roles, through: :memberships
@@ -47,7 +48,7 @@ class User < ApplicationRecord
 
   def self.from_token_request(request)
     return nil unless (r = request.params['auth'])
-    self.find_by(username: r['username']) || self.find_by(email: r['email'])
+    self.find_by(email: r['email'])
   end
 
   def self.from_token_payload(payload)
@@ -66,7 +67,7 @@ class User < ApplicationRecord
 
   # @param [Hash] hash
   def self.from_hash(hash)
-    super(hash, [:username, :email]) do |item, h|
+    super(hash, [:email]) do |item, h|
       if (roles = h.delete(:roles))
         roles.each do |role|
           role_code = role[:role]

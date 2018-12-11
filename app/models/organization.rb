@@ -4,7 +4,11 @@ class Organization < ApplicationRecord
   belongs_to :parent, class_name: 'Organization', inverse_of: :children, optional: true
   has_many :children, class_name: 'Organization', inverse_of: :organization, dependent: :destroy
 
-  has_many :memberships
+  belongs_to :producer
+  belongs_to :material_flow
+
+  has_many :memberships, dependent: :destroy
+  has_many :roles, through: :memberships
   has_many :users, through: :memberships
 
   serialize :upload_areas, HashSerializer

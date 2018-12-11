@@ -6,12 +6,21 @@ ActiveAdmin.register AccessRight do
 
   remove_filter :lock_version
 
+  permit_params :name, :code, :description
+
   index do
-    column :id
     column :name
     column :code
     column :description
     actions
+  end
+
+  show do
+    attributes_table do
+      row :name
+      row :code
+      row :description
+    end
   end
 
 end

@@ -1,28 +1,26 @@
 ActiveAdmin.register User do
   remove_filter :memberships, :lock_version, :password_digest
 
-  config.sort_order = 'username_asc'
+  config.sort_order = 'email_asc'
   config.batch_actions = false
 
-  permit_params :username, :email, :first_name, :last_name, :password,
+  permit_params :email, :first_name, :last_name, :password, :sysadmin,
                 memberships_attributes: [:id, :organization_id, :role_id, :user_id]
 
   index do
-    column :username
     column :email
     column :first_name
     column :last_name
-    column :last_login
+    bool_column :sysadmin
     actions
   end
 
   show do
     attributes_table do
-      row :username
       row :email
       row :first_name
       row :last_name
-      row :last_login
+      bool_row :sysadmin
     end
 
     table_for user.memberships do
@@ -33,11 +31,11 @@ ActiveAdmin.register User do
 
   form do |f|
     f.inputs 'User info' do
-      f.input :username
       f.input :email
       f.input :first_name
       f.input :last_name
       f.input :password
+      f.input :sysadmin
     end
     f.inputs 'Memberships' do
       f.has_many :memberships do |m|
@@ -45,6 +43,7 @@ ActiveAdmin.register User do
         m.input :role
       end
     end
+    actions
   end
 
 end
