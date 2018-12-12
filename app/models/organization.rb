@@ -11,6 +11,8 @@ class Organization < ApplicationRecord
   has_many :roles, through: :memberships
   has_many :users, through: :memberships
 
+  accepts_nested_attributes_for :memberships, allow_destroy: true
+
   serialize :upload_areas, HashSerializer
 
   def ancestors
@@ -26,6 +28,16 @@ class Organization < ApplicationRecord
         parent_organization = Organization.find_by(name: parent)
         item.parent = parent_organization if parent_organization
         puts "Could not find parent organization '#{parent}'" unless parent_organization
+      end
+      if (producer_name = h.delete(:producer))
+        producer = Producer.find_by(name: producer_name)
+        item.producer = producer if producer
+        puts "Could not find producer '#{producer_name}'" unless producer
+      end
+      if (material_flow_name = h.delete(:material_flow))
+        material_flow = MaterialFlow.find_by(name: material_flow_name)
+        item.material_flow = material_flow if material_flow
+        puts "Could not find material flow '#{material_flow_name}'" unless material_flow
       end
     end
   end

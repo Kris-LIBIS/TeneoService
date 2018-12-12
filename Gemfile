@@ -63,5 +63,7 @@ gem 'tty-spinner'
 gem 'activeadmin'
 gem 'activeadmin_addons'
 # gem 'active_material'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 
 gem 'sprockets-rails'

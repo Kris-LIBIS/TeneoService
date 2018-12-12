@@ -4,13 +4,14 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   # :recoverable, :rememberable
-  devise :database_authenticatable, :registerable, :validatable
+  devise :database_authenticatable, :registerable, :validatable,
+         :jwt_authenticatable, jwt_revocation_strategy: JWTBlacklist
 
   # authentication
   # has_secure_password
 
   # password validation
-  validates_length_of :password, minimum: 6, allow_nil: false, allow_blank: false
+  # validates_length_of :password, minimum: 6, allow_nil: false, allow_blank: false
   # validates_confirmation_of :password, allow_nil: false, allow_blank: false
 
   # sanitize email and username
@@ -26,6 +27,12 @@ class User < ApplicationRecord
   has_many :organizations, through: :memberships
 
   accepts_nested_attributes_for :memberships, allow_destroy: true
+
+  def full_name
+    r = [first_name, last_name].join(' ')
+    r = r.strip
+    r.blank? ? email : r
+  end
 
   # @param [Organization] organization
   def roles_for(organization)

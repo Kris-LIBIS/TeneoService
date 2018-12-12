@@ -36,7 +36,9 @@ module Api
 
       # PATCH/PUT /users/1
       def update
-        if @user.update(user_params)
+        if user_params[:password].blank? ?
+               @user.update_without_password(user_params)
+               : @user.update(user_params)
           render json: @user
         else
           render json: @user.errors, status: :unprocessable_entity
@@ -57,7 +59,7 @@ module Api
 
       # Only allow a trusted parameter "white list" through.
       def user_params
-        params.require(:user).permit(:email, :first_name, :last_name, :password, :password_confirmed)
+        params.require(:user).permit(:email, :first_name, :last_name, :password, :password_confirmed, :sysadmin)
       end
     end
   end

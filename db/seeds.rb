@@ -35,15 +35,15 @@ class SeedLoader
   private
 
   def load
-    load_data :role
-    load_data :organization
-    load_data :user
-    # load_data :membership
+    load_data :admin_user
     load_data :access_right
     load_data :retention_policy
     load_data :producer
     load_data :material_flow
     load_data :representation_type
+    load_data :role
+    load_data :organization
+    load_data :user
     load_data :ingest_model
     load_data :format
   end

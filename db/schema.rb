@@ -23,6 +23,18 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "lock_version", default: 0, null: false
   end
 
+  create_table "admin_users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "lock_version", default: 0, null: false
+    t.index ["email"], name: "index_admin_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
   create_table "formats", force: :cascade do |t|
     t.string "name", null: false
     t.string "category"
@@ -101,6 +113,11 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "lock_version", default: 0, null: false
     t.index ["ingest_id"], name: "index_items_on_ingest_id"
     t.index ["parent_id"], name: "index_items_on_parent_id"
+  end
+
+  create_table "jwt_blacklist", force: :cascade do |t|
+    t.string "jti", null: false
+    t.index ["jti"], name: "index_jwt_blacklist_on_jti", unique: true
   end
 
   create_table "material_flows", force: :cascade do |t|
@@ -191,7 +208,6 @@ ActiveRecord::Schema.define(version: 0) do
     t.string "encrypted_password", default: "", null: false
     t.string "first_name"
     t.string "last_name"
-    t.boolean "sysadmin", default: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "created_at", null: false

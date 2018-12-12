@@ -2,8 +2,6 @@
 
 class Membership < ApplicationRecord
 
-  self.primary_keys = :user_id, :organization_id, :role_id
-
   belongs_to :user
   belongs_to :organization
   belongs_to :role

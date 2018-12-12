@@ -8,7 +8,6 @@ class HashSerializer
   end
 
   def self.load(hash)
-    puts "HashSerializer#load: hash = #{hash} (#{hash.class.name})"
     case hash
     when nil
       {}
