@@ -80,6 +80,7 @@ class DbSetup < ActiveRecord::Migration[5.2]
 
     create_table :jwt_blacklist do |t|
       t.string :jti, null: false, index: {unique: true}
+      t.datetime :exp, null: false
     end
 
     create_table :roles, id: :string, primary_key: 'code' do |t|

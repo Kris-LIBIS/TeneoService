@@ -3,7 +3,7 @@
 module Api
   module V1
 
-    class IngestAgreementsController < ApiController
+    class IngestAgreementsController < Controller
       before_action :set_ingest_agreement, only: [:show, :update, :destroy]
 
       # GET /ingest_agreements

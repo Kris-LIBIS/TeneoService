@@ -11,7 +11,7 @@ require "action_mailer/railtie"
 require "action_view/railtie"
 require "action_cable/engine"
 require "sprockets/railtie"
-# require "rails/test_unit/railtie"
+require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -32,13 +32,12 @@ module TeneoService
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
-
-    config.middleware.insert_before 0, Rack::Cors do
-      allow do
-        origins '*'
-        resource '*', headers: :any, methods: [:head, :get, :post, :put, :patch, :delete, :options]
-      end
-    end
+    # config.middleware.insert_before 0, Rack::Cors do
+    #   allow do
+    #     origins '*'
+    #     resource '*', headers: :any, methods: [:head, :get, :post, :put, :patch, :delete, :options]
+    #   end
+    # end
 
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
@@ -47,7 +46,8 @@ module TeneoService
 
     config.middleware.use Rack::MethodOverride
 
-    config.autoload_paths += %W( lib/ )
+    config.autoload_paths << Rails.root.join("lib")
+    config.eager_load_paths << Rails.root.join("lib")
 
   end
 end

@@ -1,7 +1,7 @@
 module Api
   module V1
 
-    class FormatController < ApiController
+    class FormatController < Controller
     end
 
   end

@@ -3,33 +3,20 @@
 class ApiController < ActionController::API
   include ActionController::MimeResponds
 
-  respond_to :json
-
   before_action :authenticate_user!
-  #
-  # def check_authorization(role, organization)
-  #   current_user.is_authorized?(role, organization)
-  # end
 
-  # def render_resource(resource)
-  #   if resource.errors.empty?
-  #     render json: resource
-  #   else
-  #     validation_error(resource)
-  #   end
-  # end
-  #
-  # def validation_error(resource)
-  #   render json: {
-  #       errors: [
-  #           {
-  #               status: '400',
-  #               title: 'Bad Request',
-  #               detail: resource.errors,
-  #               code: '100'
-  #           }
-  #       ]
-  #   }, status: :bad_request
-  # end
+=begin
+  # Bootstrap jsonapi_suite with relevant modules
+  include JsonapiSuite::ControllerMixin
+
+  register_exception JsonapiCompliable::Errors::RecordNotFound,
+                     status: 404
+
+  # Catch all exceptions and render a JSONAPI-compliable error payload
+  # For additional documentation, see https://jsonapi-suite.github.io/jsonapi_errorable
+  rescue_from Exception do |e|
+    handle_exception(e)
+  end
+=end
 
 end

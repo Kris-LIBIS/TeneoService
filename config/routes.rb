@@ -7,30 +7,29 @@ Rails.application.routes.draw do
                  registration: 'signup'
              },
              controllers: {
-                 sessions: 'sessions',
-                 registrations: 'registrations'
+                 sessions: 'api/sessions',
+                 registrations: 'api/registrations'
              }
-  namespace :api do
-    namespace 'v1' do
-      # post 'user_token' => 'user_token#create'
-      resources :users
-      # get 'users/:id/organizations', to: 'users#organizations'
-      resources :roles
-      resources :memberships
-      resources :organizations do
+  namespace :api, defaults: {format: 'json'} do
+    resources :docs, only: [:index], path: '/swagger'
+    scope module: :v1, constraints: Api::VersionConstraints.new(version: 1, default: true) do
+      resources :users, only: [:show, :index]
+      resources :roles, only: [:index]
+      resources :organizations, only: [:show, :index] do
         resources :ingest_agreements, shallow: true do
-            resources :ingest_models
+          resources :ingest_models, shallow: true do
             resources :ingests, shallow: true do
               resources :items, shallow: true do
-                resources :status_logs
+                resources :status_logs, shallow: true
               end
             end
           end
         end
       end
+    end
   end
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  # root to: 'cms/content#show'
+  root to: 'admin/dashboard#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

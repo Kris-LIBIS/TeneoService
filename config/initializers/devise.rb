@@ -299,6 +299,8 @@ Devise.setup do |config|
     jwt.expiration_time = 1.year.to_i
   end
 
-  config.navigational_formats = ['/', :html]
+  config.navigational_formats = ["/admin/*", :html]
+  # config.navigational_formats = ['/', :html]
+  # config.skip_session_storage = [:params_auth]
 
 end

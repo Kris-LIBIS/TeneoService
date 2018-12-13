@@ -20,7 +20,8 @@ class User < ApplicationRecord
   end
 
   validates_presence_of :email
-  validates_uniqueness_of :email
+  validates_uniqueness_of :email, case_sensitive: false
+  validates_format_of :email, with: URI::MailTo::EMAIL_REGEXP
 
   has_many :memberships, dependent: :destroy
   has_many :roles, through: :memberships
@@ -33,6 +34,20 @@ class User < ApplicationRecord
     r = r.strip
     r.blank? ? email : r
   end
+
+  def on_jwt_dispatch(_token, payload)
+    puts "JWT paylod: #{payload}"
+  end
+
+  # def jwt_payload
+  #   {
+  #       user: {
+  #           id: self.id,
+  #           first_name: self.first_name,
+  #           last_name: self.last_name
+  #       }
+  #   }
+  # end
 
   # @param [Organization] organization
   def roles_for(organization)
@@ -53,23 +68,9 @@ class User < ApplicationRecord
     m&.destroy!
   end
 
-  def self.from_token_request(request)
-    return nil unless (r = request.params['auth'])
-    self.find_by(email: r['email'])
-  end
-
-  def self.from_token_payload(payload)
-    user_id = payload['user_id']
-    self.find(user_id)
-  end
-
-  def to_token_payload
-    {user_id: id}
-  end
-
   # @return [{Organization, [Role]}]
   def member_organizations
-    self.memberships.reduce({}) {|h, m| h[m.organization] = ((h[m.organization] ||= []) << m.role)}
+    self.memberships.reduce({}) {|h, m| h[m.organization] = ((h[m.organization] ||= []) << m.role); h}
   end
 
   # @param [Hash] hash

@@ -3,7 +3,7 @@
 module Api
   module V1
 
-    class StatusLogsController < ApiController
+    class StatusLogsController < Controller
       before_action :set_status_log, only: [:show, :update, :destroy]
 
       # GET /status_logs

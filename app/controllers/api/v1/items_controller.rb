@@ -3,7 +3,7 @@
 module Api
   module V1
 
-    class ItemsController < ApiController
+    class ItemsController < Controller
       before_action :set_item, only: [:show, :update, :destroy]
 
       # GET /items
