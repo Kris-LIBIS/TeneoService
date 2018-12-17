@@ -18,7 +18,6 @@ gem 'puma', '~> 3.11'
 # gem 'knock', '~> 2.1', '>= 2.1.1'
 gem 'devise'
 gem 'devise-jwt'
-gem 'pundit'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
@@ -62,6 +61,7 @@ group :development, :test do
   gem 'swagger-diff', '~> 1.1'
 end
 
+gem 'therubyracer'
 gem 'composite_primary_keys', '>= 11.0.3', '< 12.0.0'
 
 gem 'libis-tools', '~> 1.0'
@@ -76,3 +76,9 @@ gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 
 gem 'sprockets-rails'
+
+# API
+gem 'grape'
+# gem 'warden-jwt_auth'
+gem 'hashie'
+gem 'pundit'

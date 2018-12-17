@@ -8,11 +8,10 @@ ActiveAdmin.register Organization do
 
   permit_params :name, :description, :inst_code,
                 :ingest_dir, :upload_areas,
-                :producer_id, :material_flow_id, :parent_id,
+                :producer_id, :material_flow_id,
                 memberships_attributes: [:id, :_destroy, :organization_id, :role_id, :user_id]
 
   index do
-    column :parent
     column :name
     column :description
     column :inst_code
@@ -23,7 +22,6 @@ ActiveAdmin.register Organization do
     columns do
       column span: 2 do
         attributes_table do
-          row :parent
           row :name
           row :description
           row :inst_code
@@ -51,7 +49,6 @@ ActiveAdmin.register Organization do
 
   form do |f|
     f.inputs 'Organization info' do
-      f.input :parent
       f.input :name
       f.input :description
       f.input :inst_code

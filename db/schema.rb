@@ -149,11 +149,9 @@ ActiveRecord::Schema.define(version: 0) do
     t.jsonb "upload_areas", default: "{}", null: false
     t.bigint "producer_id"
     t.bigint "material_flow_id"
-    t.bigint "parent_id"
     t.integer "lock_version", default: 0, null: false
     t.index ["material_flow_id"], name: "index_organizations_on_material_flow_id"
     t.index ["name"], name: "index_organizations_on_name", unique: true
-    t.index ["parent_id"], name: "index_organizations_on_parent_id"
     t.index ["producer_id"], name: "index_organizations_on_producer_id"
     t.index ["upload_areas"], name: "index_organizations_on_upload_areas", using: :gin
   end
@@ -230,7 +228,6 @@ ActiveRecord::Schema.define(version: 0) do
   add_foreign_key "memberships", "roles", primary_key: "code"
   add_foreign_key "memberships", "users"
   add_foreign_key "organizations", "material_flows"
-  add_foreign_key "organizations", "organizations", column: "parent_id"
   add_foreign_key "organizations", "producers"
   add_foreign_key "status_logs", "items"
 end

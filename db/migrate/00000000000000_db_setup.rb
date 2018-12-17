@@ -123,8 +123,6 @@ class DbSetup < ActiveRecord::Migration[5.2]
       t.references :producer, foreign_key: true
       t.references :material_flow, foreign_key: true
 
-      t.references :parent, foreign_key: {to_table: :organizations}
-
       t.column :lock_version, :integer, null: false, default: 0
     end
 

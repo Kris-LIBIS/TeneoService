@@ -3,8 +3,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  # :recoverable, :rememberable
-  devise :database_authenticatable, :registerable, :validatable,
+  # :recoverable, :rememberable, :registerable
+  devise :database_authenticatable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: JWTBlacklist
 
   # authentication
@@ -35,9 +35,9 @@ class User < ApplicationRecord
     r.blank? ? email : r
   end
 
-  def on_jwt_dispatch(_token, payload)
-    puts "JWT paylod: #{payload}"
-  end
+  # def on_jwt_dispatch(_token, payload)
+  #   puts "JWT paylod: #{payload}"
+  # end
 
   # def jwt_payload
   #   {
@@ -50,28 +50,57 @@ class User < ApplicationRecord
   # end
 
   # @param [Organization] organization
+  # @return [Array<Role>]
   def roles_for(organization)
-    organization_list = organization.ancestors
-    member_organizations.select {|g, _| organization_list.include?(g)}.map {|_, r| r}.flatten.unique
+    self.memberships.where(organization: organization).map(&:role) rescue []
   end
 
+  # @param [Role] role
+  # @return [Array<Organization>]
+  def organizations_for(role)
+    self.memberships.where(role: role).map(&:organization) rescue []
+  end
+
+  # @param [Role] role
+  # @param [Organization] organization
+  # @return [boolean]
   def is_authorized?(role, organization)
+    role = Role.find_by(code: role) if role.is_a?(String)
+    return false unless role
     self.roles_for(organization).include?(role)
   end
 
+  # @param [Role] role
+  # @param [Organization] organization
+  # @return [Membership]
   def add_role(role, organization)
     self.memberships.build(organization: organization, role: role)
   end
 
+  # @param [Role] role
+  # @param [Organization] organization
   def del_role(role, organization)
     m = self.memberships.find_by(organization: organization, role: role)
     m&.destroy!
   end
 
-  # @return [{Organization, [Role]}]
+  # @return [Hash<Organization, Role>]
   def member_organizations
     self.memberships.reduce({}) {|h, m| h[m.organization] = ((h[m.organization] ||= []) << m.role); h}
   end
+
+  # #### JWT authentication
+  # def self.find_for_jwt_authentication(sub)
+  #   User.find_by(id: sub)
+  # end
+
+  # def jwt_subject
+  #   self.id
+  # end
+  #
+  # def jwt_payload
+  #   # { email: self.email}
+  # end
 
   # @param [Hash] hash
   def self.from_hash(hash)

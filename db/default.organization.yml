@@ -18,6 +18,5 @@
   description: 'LIBIS organization organization. For internal use by LIBIS (test ingests, etc.).'
   inst_code: 'INS00'
   ingest_dir: '/tmp/ingest/INS00'
-  parent: 'Teneo'
   producer: 'demo'
   material_flow: 'demo_mf'
