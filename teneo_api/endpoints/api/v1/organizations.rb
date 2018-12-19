@@ -6,7 +6,7 @@ module Api
 
         desc 'Return list of organizations'
         get do
-          Organization.all
+          present Organization.all, with: OrganizationsRepresenter
         end
 
       end

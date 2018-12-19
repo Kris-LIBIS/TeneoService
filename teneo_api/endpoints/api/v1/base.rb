@@ -1,7 +1,6 @@
 module Api
   module V1
-    class Root < ::Grape::API
-      version 'v1', using: :header, vendor: 'libis-teneo', format: :json
+    class Base < ::Grape::API
 
       before do
         authenticate!
@@ -9,6 +8,7 @@ module Api
 
       mount Api::V1::Users
       mount Api::V1::Organizations
+
     end
   end
 end

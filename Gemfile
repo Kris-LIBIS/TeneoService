@@ -46,14 +46,6 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 # gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-# JSONAPI output
-# gem 'blueprinter'
-# gem 'jsonapi_suite', '~> 0.7'
-# gem 'jsonapi-rails', '~> 0.3.0'
-# gem 'jsonapi_swagger_helpers', '~> 0.6', require: false
-# gem 'jsonapi_spec_helpers', '~> 0.4', require: false
-# gem 'kaminari', '~> 1.0'
-
 group :development, :test do
   gem 'rspec-rails', '~> 3.5.2'
   gem 'factory_bot_rails', '~> 4.0'
@@ -82,3 +74,5 @@ gem 'grape'
 # gem 'warden-jwt_auth'
 gem 'hashie'
 gem 'pundit'
+gem 'roar'
+gem 'grape-roar'

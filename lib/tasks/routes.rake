@@ -1,4 +1,4 @@
-namespace :api do
+namespace :teneo_api do
   desc 'API Routes'
   task routes: :environment do
     Api::Root.routes.each do |api|

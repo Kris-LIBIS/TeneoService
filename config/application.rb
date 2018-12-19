@@ -49,11 +49,11 @@ module TeneoService
     config.autoload_paths << Rails.root.join("lib")
     config.eager_load_paths << Rails.root.join("lib")
 
-    # config.paths.add 'app/api', glob: '**/*.rb'
-    # config.autoload_paths << Rails.root.join('app/api')
-
     # noinspection RubyResolve
     config.action_dispatch.rescue_responses["Pundit::NotAuthorizedError"] = :forbidden
+
+    config.autoload_paths << Rails.root.join('teneo_api/endpoints')
+    config.autoload_paths << Rails.root.join('teneo_api/representers')
 
   end
 end

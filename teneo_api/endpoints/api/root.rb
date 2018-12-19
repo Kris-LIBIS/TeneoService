@@ -31,10 +31,7 @@ module Api
     end
 
     format :json
-
-    before do
-      authenticate!
-    end
+    formatter :json, Grape::Formatter::Roar
 
     mount ::Api::V1::Root
   end
