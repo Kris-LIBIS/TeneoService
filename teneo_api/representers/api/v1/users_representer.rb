@@ -1,15 +1,14 @@
-require 'roar/decorator'
-require 'roar/json'
-
 module Api
   module V1
-    class UsersRepresenter < ApiRepresenter
+    class UsersRepresenter < Grape::Roar::Decorator
+      include ApiRepresenter
 
-      collection :users, class: User do
-        property :id
-        property :email
-        property :first_name
-        property :last_name
+      type :users
+
+      attributes do
+        property :email, type: String, desc: 'E-mail address'
+        property :first_name, type: String, desc: 'First name'
+        property :last_name, type: String, desc: 'Last name'
       end
 
     end

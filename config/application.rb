@@ -55,5 +55,8 @@ module TeneoService
     config.autoload_paths << Rails.root.join('teneo_api/endpoints')
     config.autoload_paths << Rails.root.join('teneo_api/representers')
 
+    config.eager_load_paths << Rails.root.join('teneo_api/endpoints')
+    config.eager_load_paths << Rails.root.join('teneo_api/representers')
+
   end
 end

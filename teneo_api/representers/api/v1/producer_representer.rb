@@ -3,11 +3,12 @@ require 'roar/json'
 
 module Api
   module V1
-    class ProducerRepresenter < ApiRepresenter
+    class ProducerRepresenter < ApiRepresenter['producers']
 
-      property :id
-      property :name
-      property :description
+      attributes do
+        property :name
+        property :description
+      end
 
     end
   end

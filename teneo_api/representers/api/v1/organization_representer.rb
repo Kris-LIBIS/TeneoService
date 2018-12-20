@@ -3,16 +3,19 @@ require 'roar/json'
 
 module Api
   module V1
-    class OrganizationRepresenter < ApiRepresenter
+    class OrganizationRepresenter < ApiRepresenter['organizations']
 
-      property :id
-      property :name
-      property :description
-      property :inst_code
-      property :ingest_dir
-      property :upload_areas
+      type :organizations
 
-      property :producer, decorator: ProducerRepresenter
+      attributes do
+        property :name
+        property :description
+        property :inst_code
+        property :ingest_dir
+        property :upload_areas
+      end
+
+      has_one :producer, extend: ProducerRepresenter
 
     end
   end

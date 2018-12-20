@@ -1,17 +1,24 @@
-require 'roar/decorator'
-require 'roar/json'
-
+# require 'roar/decorator'
+# require 'roar/json/json_api'
 module Api
   module V1
-    class UserRepresenter < ApiRepresenter
+    class UserRepresenter < ApiRepresenter['users']
 
-      property :id
-      property :email
-      property :first_name
-      property :last_name
+      # include Roar::JSON::JSONAPI.resource :users
 
-      property :organizations, extend: OrganizationsRepresenter, embedded: true
+      # type :users
+      #
+      # property :id, type: String
 
+      attributes do
+        property :email
+        property :first_name
+        property :last_name
+      end
+
+      # has_many :organizations, extend: OrganizationRepresenter
+
+      collection_representer! class: User
     end
   end
 end
