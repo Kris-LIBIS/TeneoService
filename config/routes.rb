@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       resources :organizations, only: [:show, :index] do
         resources :ingest_agreements, shallow: true do
           resources :ingest_models, shallow: true do
-            resources :ingests, shallow: true do
+            resources :packages, shallow: true do
               resources :items, shallow: true do
                 resources :status_logs, shallow: true
               end

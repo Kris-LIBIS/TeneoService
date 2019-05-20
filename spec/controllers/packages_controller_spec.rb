@@ -23,7 +23,7 @@ require 'rails_helper'
 # removed from Rails core in Rails 5, but can be added back in via the
 # `rails-controller-testing` gem.
 
-RSpec.describe IngestsController, type: :controller do
+RSpec.describe PackagesController, type: :controller do
 
   # This should return the minimal set of attributes required to create a valid
   # Ingest. As you add validations to Ingest, be sure to
@@ -43,7 +43,7 @@ RSpec.describe IngestsController, type: :controller do
 
   describe "GET #index" do
     it "returns a success response" do
-      ingest = Ingest.create! valid_attributes
+      package = Package.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(response).to be_successful
     end
@@ -51,33 +51,33 @@ RSpec.describe IngestsController, type: :controller do
 
   describe "GET #show" do
     it "returns a success response" do
-      ingest = Ingest.create! valid_attributes
-      get :show, params: {id: ingest.to_param}, session: valid_session
+      package = Package.create! valid_attributes
+      get :show, params: {id: package.to_param}, session: valid_session
       expect(response).to be_successful
     end
   end
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new Ingest" do
+      it "creates a new Package" do
         expect {
           post :create, params: {ingest: valid_attributes}, session: valid_session
-        }.to change(Ingest, :count).by(1)
+        }.to change(Package, :count).by(1)
       end
 
       it "renders a JSON response with the new ingest" do
 
-        post :create, params: {ingest: valid_attributes}, session: valid_session
+        post :create, params: {package: valid_attributes}, session: valid_session
         expect(response).to have_http_status(:created)
         expect(response.content_type).to eq('application/json')
-        expect(response.location).to eq(ingest_url(Ingest.last))
+        expect(response.location).to eq(package_url(Package.last))
       end
     end
 
     context "with invalid params" do
       it "renders a JSON response with errors for the new ingest" do
 
-        post :create, params: {ingest: invalid_attributes}, session: valid_session
+        post :create, params: {package: invalid_attributes}, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
@@ -91,9 +91,9 @@ RSpec.describe IngestsController, type: :controller do
       }
 
       it "updates the requested ingest" do
-        ingest = Ingest.create! valid_attributes
-        put :update, params: {id: ingest.to_param, ingest: new_attributes}, session: valid_session
-        ingest.reload
+        package = Package.create! valid_attributes
+        put :update, params: {id: package.to_param, package: new_attributes}, session: valid_session
+        package.reload
         skip("Add assertions for updated state")
       end
 
@@ -108,9 +108,9 @@ RSpec.describe IngestsController, type: :controller do
 
     context "with invalid params" do
       it "renders a JSON response with errors for the ingest" do
-        ingest = Ingest.create! valid_attributes
+        package = Package.create! valid_attributes
 
-        put :update, params: {id: ingest.to_param, ingest: invalid_attributes}, session: valid_session
+        put :update, params: {id: package.to_param, package: invalid_attributes}, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end

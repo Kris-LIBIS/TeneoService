@@ -10,7 +10,7 @@ module Api::V1
       helpers Api::Helpers::PaginationHelper
 
       desc 'Return list of users'
-      paginate per_page: 10, max_per_page: 40
+      # paginate per_page: 10, max_per_page: 40
       params do
         use :user_fields
       end
